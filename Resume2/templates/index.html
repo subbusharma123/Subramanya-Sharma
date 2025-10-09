@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Home – Subramanya Sharma B.G.{% endblock %}
+{% block content %}
+<section class="hero">
+  <img src="{{ url_for('static', filename='img/avatar.jpg') }}" alt="avatar"/>
+
+  <!--  TYPEWRITER TITLE  -->
+  <h1 class="typewriter">Hi, I'm Subramanya Sharma B.G.</h1>
+
+  <p class="tagline mt-1">Data Engineer · Python · Elasticsearch · Kibana</p>
+<div class="btn-row mt-3">
+  <a href="{{ url_for('experience') }}" class="btn">Explore My Work Experience</a>
+  <a href="{{ url_for('projects') }}" class="btn">Explore My Work Projects</a>
+</div>
+
+<!--  SOCIAL / CERT  -->
+<div class="socials mt-3">
+  <a href="https://github.com/SubramanyaSharmaBG" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+  <a href="https://linkedin.com/in/SubramanyaSharmaBG" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+  <a href="https://codechef.com/users/SubramanyaSharmaBG" target="_blank" aria-label="CodeChef"><i class="fas fa-code"></i></a>
+  <!--  CREDLY  -->
+  <a href="https://www.credly.com/users/subramanya-sharma-b-g-1" target="_blank" aria-label="Credly-1"><i class="fas fa-award"></i></a>
+  <a href="https://www.credly.com/users/subramanya-sharma-b-g" target="_blank" aria-label="Credly-2"><i class="fas fa-certificate"></i></a>
+</div>
+</section>  
+
+<!--  TYPING + CURSOR  -->
+<style>
+.typewriter{
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  background: var(--accent);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #667eea;
+
+  animation: typing 2.5s steps(32, end) forwards, blink 0.6s step-end infinite;
+}
+@keyframes typing{to{width: 100%;}}
+@keyframes blink{50%{border-color: transparent;}}
+</style>
+{% endblock %}

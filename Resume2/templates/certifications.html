@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}Certifications – Subramanya Sharma B.G.{% endblock %}
+{% block content %}
+<section class="section">
+  <h2>My Certifications</h2>
+
+  <!-- ===== TOP-4 HIGHLIGHT CARDS ===== -->
+  <div class="cert-grid">
+    <!-- 1  Azure Data Fundamentals -->
+    <div class="cert-card">
+      <img src="{{ url_for('static', filename='img/certs/azure-data.png') }}" alt="Azure Data">
+      <h3>Microsoft Certified: Azure Data Fundamentals</h3>
+      <p class="issuer">Microsoft</p>
+      <p class="date">Issued Nov 2024</p>
+      <p class="cred-id">Credential ID <strong>D8FBC4789181DA95</strong></p>
+      <a href="https://www.credly.com/badges/d8fbc4789181da95" target="_blank" class="btn-small">Show credential</a>
+    </div>
+
+    <!-- 2  Elastic Stack -->
+    <div class="cert-card">
+      <img src="{{ url_for('static', filename='img/certs/elastic.png') }}" alt="Elastic">
+      <h3>Elastic Stack</h3>
+      <p class="issuer">Great Learning</p>
+      <p class="date">Issued Dec 2023</p>
+    </div>
+
+    <!-- 3  AWS Cloud Practitioner -->
+    <div class="cert-card">
+      <img src="{{ url_for('static', filename='img/certs/aws-cloud.png') }}" alt="AWS">
+      <h3>AWS Certified Cloud Practitioner</h3>
+      <p class="issuer">Amazon Web Services (AWS)</p>
+      <p class="date">Issued Mar 2025 · Expires Mar 2028</p>
+      <a href="https://www.credly.com/badges/4bf8c7cf4e5c4a629f6f5e4c4c4e4e4e" target="_blank" class="btn-small">Show credential</a>
+    </div>
+
+    <!-- 4  Azure Fundamentals -->
+    <div class="cert-card">
+      <img src="{{ url_for('static', filename='img/certs/azure-fund.png') }}" alt="Azure Fundamentals">
+      <h3>Microsoft Certified: Azure Fundamentals</h3>
+      <p class="issuer">Microsoft</p>
+      <p class="date">Issued Jun 2023</p>
+      <a href="https://www.credly.com/badges/4bf8c7cf4e5c4a629f6f5e4c4c4e4e4e" target="_blank" class="btn-small">Show credential</a>
+    </div>
+  </div>
+
+  <!-- ===== "SEE MORE" BUTTON ===== -->
+  <div class="see-more">
+    <a href="https://www.linkedin.com/in/subramanya-sharma-b-g/details/certifications/" target="_blank" class="btn">
+      To See More Check out LinkedIn Certifications
+    </a>
+  </div>
+</section>
+
+<style>
+/* ----- grid ----- */
+.cert-grid{
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin-bottom: 3rem;
+}
+
+/* ----- card ----- */
+.cert-card{
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform .3s;
+}
+.cert-card:hover{ transform: translateY(-6px); }
+
+.cert-card img{
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin: 0 auto 1rem;
+}
+
+.cert-card h3{ font-size: 1.15rem; margin-bottom: .4rem; }
+.issuer{ color: var(--muted); font-weight: 500; }
+.date { font-size: .85rem; color: var(--muted); margin-bottom: .8rem; }
+.cred-id{ font-size: .8rem; color: var(--muted); margin-bottom: 1rem; }
+
+/* ----- small button ----- */
+.btn-small{
+  display: inline-block;
+  padding: .5rem 1.2rem;
+  border-radius: 50px;
+  background: var(--accent);
+  color: #fff;
+  font-size: .85rem;
+  font-weight: 600;
+  transition: transform .2s;
+}
+.btn-small:hover{ transform: translateY(-2px); }
+
+/* ----- "see more" ----- */
+.see-more{ text-align: center; margin-top: 2rem; }
+</style>
+{% endblock %}
