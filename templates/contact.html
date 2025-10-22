@@ -1,26 +1,33 @@
 {% extends "base.html" %}
-{% block title %}Contact – Subramanya Sharma{% endblock %}
+{% block title %}Contact – Subramanya Sharma B.G.{% endblock %}
 {% block content %}
 <section class="section">
   <h2>Contact</h2>
+
   <div class="card" style="text-align:center;">
     <h3>Let’s connect</h3>
+
     <p style="margin:.8rem 0;"><i class="fas fa-envelope"></i>
       <a href="mailto:subramanyasharma987@gmail.com">subramanyasharma987@gmail.com</a>
     </p>
     <p style="margin:.8rem 0;"><i class="fas fa-phone"></i>
       <a href="tel:+919901526720">+91 99015 26720</a>
     </p>
+
+    <!--  SOCIAL  -->
     <div class="socials" style="justify-content:center;margin-top:1.5rem;">
-      <a href="https://github.com/SubramanyaSharmaBG" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://linkedin.com/in/SubramanyaSharmaBG" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://codechef.com/users/SubramanyaSharmaBG" target="_blank"><i class="fas fa-code"></i></a>
+      <a href="https://github.com/SubramanyaSharmaBG" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/SubramanyaSharmaBG" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://codechef.com/users/SubramanyaSharmaBG" target="_blank" aria-label="CodeChef"><i class="fas fa-code"></i></a>
       <a href="https://www.credly.com/users/subramanya-sharma-b-g-1" target="_blank" aria-label="Credly-1"><i class="fas fa-award"></i></a>
       <a href="https://www.credly.com/users/subramanya-sharma-b-g" target="_blank" aria-label="Credly-2"><i class="fas fa-certificate"></i></a>
     </div>
+
+    <!--  DOWNLOAD RESUME  -->
     <div style="margin-top:1.5rem;">
-      <a href="{{ url_for('static', filename='templates/Subramanya_Sharma_B_G_Resume.pdf') }}" class="button" download>
-        <i class="fas fa-download"></i> Download Resume</a>
+      <a href="{{ url_for('static', filename='docs/Subramanya_Sharma_B_G_Resume.pdf') }}" class="btn" download>
+        <i class="fas fa-download"></i> Download Resume
+      </a>
     </div>
   </div>
 </section>

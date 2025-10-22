@@ -99,3 +99,15 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 /* ---------- nav ---------- */
 .nav-links { display: flex; gap: 1.2rem; }
 .nav-links li { list-style: none; }   /* extra safety */
+
+/* inside spa.css */
+.btn{
+  display:inline-block;
+  padding:.8rem 1.8rem;
+  border-radius:50px;
+  background:var(--accent);
+  color:#fff;
+  font-weight:600;
+  transition:transform .2s;
+}
+.btn:hover{transform:translateY(-2px);}
