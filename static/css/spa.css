@@ -103,3 +103,9 @@ footer{text-align:center;padding:3rem 1rem;font-size:.85rem;color:var(--muted);}
   .nav-links.active{transform:translateX(0);}
   .hamburger{display:block;}
 }
+/* ---------- LANDSCAPE / SHORT SCREENS ---------- */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero{ min-height: auto; padding: 2rem 1rem; }
+  .hero img{ width: 100px; height: 100px; }
+  .hero h1{ font-size: clamp(1.6rem, 6vw, 2.5rem); }
+}
