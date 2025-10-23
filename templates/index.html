@@ -2,48 +2,37 @@
 {% block title %}Home – Subramanya Sharma B.G.{% endblock %}
 {% block content %}
 <section class="hero">
-  <img src="{{ url_for('static', filename='img/avatar.jpg') }}" alt="avatar"/>
+  <div class="container text-center">
+    <img src="{{ url_for('static', filename='img/avatar.jpg') }}" alt="avatar" class="mb-4">
+    <h1 class="typewriter fw-bold">Hi, I'm Subramanya Sharma B.G.</h1>
+    <p class="tagline mb-4">Data Engineer · Python · Elasticsearch · Kibana</p>
 
-  <!--  TYPEWRITER TITLE  -->
-  <h1 class="typewriter">Hi, I'm Subramanya Sharma B.G.</h1>
+    <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+      <a href="{{ url_for('experience') }}" class="btn btn-brand">Explore my work experience</a>
+      <a href="{{ url_for('projects') }}" class="btn btn-brand">Explore my projects</a>
+    </div>
 
-  <p class="tagline mt-1" style="background: rgba(0,0,0,.05); padding: .4rem .8rem; border-radius: 8px;">
-    Data Engineer · Python · Elasticsearch · Kibana
-  </p>
-<div class="btn-row mt-3">
-  <a href="{{ url_for('experience') }}" class="btn">Explore My Work Experience</a>
-  <a href="{{ url_for('projects') }}" class="btn">Explore My Work Projects</a>
-</div>
-
-<!--  SOCIAL / CERT  -->
-<div class="socials mt-3">
-  <a href="https://github.com/SubramanyaSharmaBG" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-  <a href="https://linkedin.com/in/SubramanyaSharmaBG" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-  <a href="https://codechef.com/users/SubramanyaSharmaBG" target="_blank" aria-label="CodeChef"><i class="fas fa-code"></i></a>
-  <!--  CREDLY  -->
-  <a href="https://www.credly.com/users/subramanya-sharma-b-g-1" target="_blank" aria-label="Credly-1"><i class="fas fa-award"></i></a>
-  <a href="https://www.credly.com/users/subramanya-sharma-b-g" target="_blank" aria-label="Credly-2"><i class="fas fa-certificate"></i></a>
-</div>
-</section>  
-
-<!--  TYPING + CURSOR  -->
+    <div class="d-flex justify-content-center gap-3">
+      <a href="https://github.com/SubramanyaSharmaBG" target="_blank" class="social-chip"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/SubramanyaSharmaBG" target="_blank" class="social-chip"><i class="fab fa-linkedin"></i></a>
+      <a href="https://codechef.com/users/SubramanyaSharmaBG" target="_blank" class="social-chip"><i class="fas fa-code"></i></a>
+      <a href="https://www.credly.com/users/subramanya-sharma-b-g-1" target="_blank" class="social-chip"><i class="fas fa-award"></i></a>
+      <a href="https://www.credly.com/users/subramanya-sharma-b-g" target="_blank" class="social-chip"><i class="fas fa-certificate"></i></a>
+    </div>
+  </div>
+</section>
 <style>
 .typewriter{
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 700;
-  background: var(--accent);
-  -webkit-background-clip: text;
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid #667eea;
-
-  animation: typing 2.5s steps(32, end) forwards, blink 0.6s step-end infinite;
+  font-size:clamp(2rem,5vw,3.5rem);
+  font-weight:700;
+  background:var(--bs-primary);
+  -webkit-background-clip:text;
+          background-clip:text;
+  -webkit-text-fill-color:transparent;
+  width:0;white-space:nowrap;overflow:hidden;border-right:3px solid var(--bs-primary);
+  animation:typing 2.5s steps(30,end) forwards,blink .6s step-end infinite;
 }
-@keyframes typing{to{width: 100%;}}
-@keyframes blink{50%{border-color: transparent;}}
+@keyframes typing{to{width:100%;}}
+@keyframes blink{50%{border-color:transparent;}}
 </style>
 {% endblock %}
