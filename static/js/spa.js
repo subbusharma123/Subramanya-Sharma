@@ -44,7 +44,13 @@ toggle.addEventListener('click', () => {
 // ---------- mobile nav ----------
 const hamburger = document.getElementById('hamburger');
 const navLinks  = document.querySelector('.nav-links');
+
 hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+/*  NEW  */
+document.querySelectorAll('.nav-links a[data-link]').forEach(a =>
+  a.addEventListener('click', () => navLinks.classList.remove('active'))
+);
 
 // ----- footer year -----
 document.getElementById('year').textContent = new Date().getFullYear();
