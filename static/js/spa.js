@@ -55,7 +55,3 @@ document.querySelectorAll('.nav-links a[data-link]').forEach(a =>
 // ----- footer year -----
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* ---------- auto dark if OS prefers ---------- */
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  document.documentElement.setAttribute('data-theme', 'dark');
-}
