@@ -3,29 +3,19 @@
 :root {
   /* Luxury Dark Palette */
   --bg: #050505;
-  /* Deepest Onyx */
   --bg-secondary: #0a0a0a;
   --fg: #e5e5e5;
-  /* Platinum */
   --fg-muted: #a3a3a3;
-
   --gold: #d4af37;
-  /* Metallic Gold */
   --gold-dim: #aa8c2c;
   --gold-light: #f3e5ab;
-
   --card-bg: rgba(20, 20, 20, 0.6);
   --glass-border: 1px solid rgba(212, 175, 55, 0.15);
-  /* Gold tint border */
-
   --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
-
   --radius: 4px;
-  /* Sharper corners for elegance */
   --font-heading: 'Playfair Display', serif;
   --font-body: 'Inter', sans-serif;
-
   --transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -35,7 +25,6 @@
   --fg: #1a1a1a;
   --fg-muted: #555555;
   --gold: #b8860b;
-  /* Darker gold for light bg */
   --gold-dim: #d4af37;
   --gold-light: #fff8e1;
   --card-bg: rgba(255, 255, 255, 0.85);
@@ -59,6 +48,7 @@ body {
   font-family: var(--font-body);
   line-height: 1.7;
   overflow-x: hidden;
+  transition: background-color var(--transition), color var(--transition);
 }
 
 h1,
@@ -71,12 +61,216 @@ h4,
   letter-spacing: -0.01em;
 }
 
-/* ... rest of css ... */
-/* Fix navbar overlap */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+ul {
+  list-style: none;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all var(--transition);
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(248, 249, 250, 0.9);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  font-size: 1.4rem;
+  background: linear-gradient(to right, var(--gold), var(--gold-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-muted);
+  position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--gold);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: all var(--transition);
+  transform: translateX(-50%);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.btn-download {
+  border: 1px solid var(--gold);
+  color: var(--gold) !important;
+  padding: 0.5rem 1.2rem;
+  border-radius: 2px;
+  transition: all var(--transition);
+}
+
+.btn-download:hover {
+  background: var(--gold);
+  color: var(--bg) !important;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-download::after {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  color: var(--gold);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Main */
 #spa-root {
   min-height: 100vh;
   padding-top: 100px;
-  /* Increased from 80px */
+}
+
+.section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--fg);
+  border-left: 3px solid var(--gold);
+  padding-left: 1.5rem;
+  line-height: 1;
+}
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  border: var(--glass-border);
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  opacity: 0.5;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: var(--shadow-sm);
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--fg);
+}
+
+.date {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+
+.card ul li {
+  margin-bottom: 0.8rem;
+  color: var(--fg-muted);
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.card ul li::before {
+  content: '•';
+  color: var(--gold);
+  position: absolute;
+  left: 0;
+}
+
+/* Hero */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--gold);
+  padding: 5px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to bottom right, var(--fg), var(--fg-muted));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
 }
 
 .hero p {
@@ -96,6 +290,7 @@ h4,
   text-transform: uppercase;
   box-shadow: 0 5px 20px rgba(212, 175, 55, 0.25);
   transition: all var(--transition);
+  display: inline-block;
 }
 
 .btn:hover {
@@ -104,7 +299,47 @@ h4,
   background: var(--gold-light);
 }
 
-/* ---------- Skills Grid ---------- */
+.btn-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Utilities */
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mt-3 {
+  margin-top: 3rem;
+}
+
+.socials {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.socials a {
+  font-size: 1.5rem;
+  color: var(--fg-muted);
+  transition: color 0.3s;
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 50%;
+}
+
+.socials a:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+/* Skills */
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -119,23 +354,27 @@ h4,
   transition: all var(--transition);
 }
 
+[data-theme="light"] .skills-container div {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
 .skills-container div:hover {
   border-color: var(--gold);
   color: var(--gold);
   background: rgba(212, 175, 55, 0.05);
 }
 
-/* ---------- Footer ---------- */
+/* Footer */
 footer {
   text-align: center;
   padding: 3rem;
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.2);
+  color: var(--fg-muted);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   margin-top: 4rem;
 }
 
-/* ---------- Mobile ---------- */
+/* Mobile */
 @media (max-width: 768px) {
   .navbar {
     padding: 1rem 1.5rem;
@@ -147,14 +386,14 @@ footer {
     right: 0;
     height: 100vh;
     width: 70%;
-    background: #000;
+    background: var(--bg);
+    border-left: 1px solid var(--gold);
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 2rem;
     transform: translateX(100%);
     transition: transform 0.4s ease;
-    border-left: 1px solid var(--gold);
   }
 
   .nav-links.active {
@@ -170,12 +409,11 @@ footer {
     font-size: 2.5rem;
   }
 
-  .section h2 {
-    font-size: 2rem;
+  .btn-row {
+    flex-direction: column;
   }
 }
 
-/* ---------- Print (Resume) ---------- */
 @media print {
 
   .navbar,
@@ -188,6 +426,4 @@ footer {
     background: #fff;
     color: #000;
   }
-
-  /* More specific print styles will be in resume.html */
 }
