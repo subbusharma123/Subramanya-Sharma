@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Subramanya Sharma B.G. - Resume</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #2980b9;
+            --text: #333;
+            --light-text: #666;
+            --bg: #fff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #555;
+            /* Dark background for web view */
+            color: var(--text);
+            font-size: 10px;
+            /* Base size for tight fit */
+            line-height: 1.4;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .resume-page {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            padding: 30px 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            display: grid;
+            grid-template-columns: 2fr 5fr;
+            /* Sidebar | Main */
+            gap: 25px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            border-right: 1px solid #eee;
+            padding-right: 20px;
+            text-align: right;
+        }
+
+        h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 22px;
+            color: var(--primary);
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .role-title {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 12px;
+            color: var(--primary);
+            text-transform: uppercase;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 3px;
+            margin: 20px 0 10px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar h2 {
+            margin-top: 0;
+            border-bottom: none;
+            color: var(--accent);
+        }
+
+        .contact-info {
+            margin-bottom: 20px;
+            font-size: 9px;
+        }
+
+        .contact-info div {
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 6px;
+        }
+
+        .contact-info i {
+            color: var(--accent);
+            width: 12px;
+        }
+
+        .skill-group {
+            margin-bottom: 15px;
+        }
+
+        .skill-group h3 {
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .skill-list {
+            font-size: 9px;
+            color: var(--light-text);
+        }
+
+        .cert-item {
+            margin-bottom: 8px;
+            font-size: 9px;
+        }
+
+        .cert-date {
+            color: #888;
+            font-size: 8px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 0;
+        }
+
+        .summary {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 10px;
+        }
+
+        .job {
+            margin-bottom: 15px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+
+        .job-title {
+            font-weight: 700;
+            font-size: 12px;
+            color: var(--primary);
+        }
+
+        .job-company {
+            font-weight: 600;
+            color: #444;
+        }
+
+        .job-date {
+            font-size: 9px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .job-location {
+            font-size: 9px;
+            color: #888;
+        }
+
+        .job ul {
+            list-style: none;
+            margin-top: 4px;
+        }
+
+        .job li {
+            position: relative;
+            padding-left: 12px;
+            margin-bottom: 3px;
+            color: #444;
+        }
+
+        .job li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .project {
+            margin-bottom: 10px;
+        }
+
+        .project-title {
+            font-weight: 700;
+            font-size: 11px;
+        }
+
+        .project-desc {
+            font-size: 9px;
+            color: #555;
+        }
+
+        /* Print Controls */
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                display: block;
+            }
+
+            .resume-page {
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .print-btn {
+                display: none;
+            }
+
+            @page {
+                margin: 10mm;
+                size: A4;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="javascript:window.print()" class="print-btn"><i class="fa-solid fa-file-pdf"></i> Save as PDF</a>
+
+    <div class="resume-page">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="contact-info">
+                <!-- Replace with actual contact info if available in other files, using placeholders for now -->
+                <div>Bengaluru, India <i class="fa-solid fa-location-dot"></i></div>
+                <div>(Link hidden) <i class="fa-solid fa-envelope"></i></div>
+                <div>linkedin.com/in/... <i class="fa-brands fa-linkedin"></i></div>
+            </div>
+
+            <h2>Skills</h2>
+            <div class="skill-group">
+                <h3>Languages</h3>
+                <div class="skill-list">Python, SQL, HTML/CSS</div>
+            </div>
+            <div class="skill-group">
+                <h3>Data & Search</h3>
+                <div class="skill-list">Elasticsearch, Logstash, Kibana, Pandas, NumPy</div>
+            </div>
+            <div class="skill-group">
+                <h3>Cloud & Tools</h3>
+                <div class="skill-list">Azure, Git, Docker, Jira, SNOW</div>
+            </div>
+            <div class="skill-group">
+                <h3>AI & LLM</h3>
+                <div class="skill-list">Agentic AI Workflows, RAG, Prompt Engineering</div>
+            </div>
+
+            <h2>Certifications</h2>
+            <div class="cert-item">
+                <div>Microsoft Certified: Azure Data Fundamentals</div>
+                <div class="cert-date">2023</div>
+            </div>
+            <div class="cert-item">
+                <div>Elastic Certified Engineer</div>
+                <div class="cert-date">2024</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header>
+                <h1>Subramanya Sharma B.G.</h1>
+                <div class="role-title">DATA ENGINEER | AI DATA ANALYST</div>
+                <p class="summary">
+                    Data Engineer and AI Analyst with strong expertise in the ELK Stack, SQL, and Agentic AI systems.
+                    Proven track record of optimizing data ingestion pipelines and building automated analysis tools
+                    powered by LLMs.
+                </p>
+            </header>
+
+            <h2>Experience</h2>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">AI Data Analyst</span>
+                    <span class="job-date">Recent</span>
+                </div>
+                <div class="job-company">Confidential / Stealth</div>
+                <ul>
+                    <li>Architected agentic AI systems to automate complex data tasks by orchestrating LLM interactions.
+                    </li>
+                    <li>Developed analytical engines that provide automated recommendations and risk assessments on
+                        large datasets.</li>
+                    <li>Designed risk scoring models integrated directly into the agentic workflow for real-time
+                        decision support.</li>
+                    <li>Streamlined reporting processes, reducing manual analysis time by implementing automated insight
+                        generation.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Data Engineer</span>
+                    <span class="job-date">Sept 2023 – Present</span>
+                </div>
+                <div class="job-company">Kyndryl Solutions</div>
+                <ul>
+                    <li>Analyzed terabyte-scale datasets using Elastic, Kibana, and SQL to derive actionable business
+                        insights.</li>
+                    <li>Designed and maintained intuitive Kibana dashboards used by executive stakeholders for strategy
+                        planning.</li>
+                    <li>Optimized ETL processes and SQL scripting within Elasticsearch, achieving significant reduction
+                        in data processing latency.</li>
+                    <li>Managed data ingestion pipelines using Logstash and resolved 150+ ServiceNow tickets to ensure
+                        system stability.</li>
+                </ul>
+            </div>
+
+            <h2>Projects</h2>
+            <div class="project">
+                <div class="project-title">Portfolio Website with Agentic AI Integration</div>
+                <div class="project-desc">Designed a premium portfolio website featuring a dynamic resume generator and
+                    AI-driven content presentation.</div>
+            </div>
+            <!-- Add more projects here if known -->
+
+        </div>
+    </div>
+
+</body>
+
+</html>
