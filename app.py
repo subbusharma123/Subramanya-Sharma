@@ -32,5 +32,9 @@ def contact():
 def certifications():
     return render_template('certifications.html')
 
+@app.route('/resume-view')
+def resume_view():
+    return render_template('resume.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

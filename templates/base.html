@@ -1,19 +1,20 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8"/>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-  <meta name="theme-color" content="#667eea">   <!-- Android toolbar colour -->
+  <meta name="theme-color" content="#667eea"> <!-- Android toolbar colour -->
   <title>{% block title %}Subramanya Sharma B.G.{% endblock %}</title>
 
   <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet" />
 
   <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <!-- Your styles & scripts -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/spa.css') }}"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/spa.css') }}" />
   <script defer src="{{ url_for('static', filename='js/spa.js') }}"></script>
 </head>
 
@@ -22,13 +23,15 @@
   <nav class="navbar">
     <div class="logo">Data Engineer</div>
     <ul class="nav-links">
-      <li><a href="{{ url_for('home') }}"       data-link>Home</a></li>
-      <li><a href="{{ url_for('about') }}"      data-link>About</a></li>
+      <li><a href="{{ url_for('home') }}" data-link>Home</a></li>
+      <li><a href="{{ url_for('about') }}" data-link>About</a></li>
       <li><a href="{{ url_for('experience') }}" data-link>Experience</a></li>
-      <li><a href="{{ url_for('projects') }}"   data-link>Projects</a></li>
-      <li><a href="{{ url_for('skills') }}"     data-link>Skills</a></li>
-      <li><a href="{{ url_for('contact') }}"    data-link>Contact</a></li>
+      <li><a href="{{ url_for('projects') }}" data-link>Projects</a></li>
+      <li><a href="{{ url_for('skills') }}" data-link>Skills</a></li>
+      <li><a href="{{ url_for('contact') }}" data-link>Contact</a></li>
       <li><a href="{{ url_for('certifications') }}" data-link>Certifications</a></li>
+      <li><a href="{{ url_for('resume_view') }}" class="btn-download" target="_blank">View Resume <i
+            class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
     </ul>
     <div class="hamburger" id="hamburger">&#9776;</div>
   </nav>
@@ -43,4 +46,5 @@
     <p>© <span id="year"></span> Subramanya Sharma B.G.</p>
   </footer>
 </body>
+
 </html>
