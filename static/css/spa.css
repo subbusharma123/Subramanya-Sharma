@@ -23,10 +23,12 @@
   --bg: #f8f9fa;
   --bg-secondary: #ffffff;
   --fg: #1a1a1a;
-  --fg-muted: #555555;
+  --fg-muted: #333333;
+  /* Darker for better visibility */
   --gold: #b8860b;
   --gold-dim: #d4af37;
-  --gold-light: #fff8e1;
+  --gold-light: #DAA520;
+  /* Goldenrod - visible against white */
   --card-bg: rgba(255, 255, 255, 0.85);
   --glass-border: 1px solid rgba(184, 134, 11, 0.2);
   --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.08);

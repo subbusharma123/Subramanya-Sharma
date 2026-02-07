@@ -34,19 +34,21 @@
 <!--  TYPING + CURSOR  -->
 <style>
   .typewriter {
+    display: inline-block;
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
-    background: var(--accent);
+    background: linear-gradient(to right, var(--gold), var(--fg));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 
     width: 0;
+    max-width: fit-content;
     white-space: nowrap;
     overflow: hidden;
-    border-right: 3px solid #667eea;
+    border-right: 3px solid var(--gold);
 
-    animation: typing 2.5s steps(32, end) forwards, blink 0.75s step-end 3 forwards;
+    animation: typing 3.5s steps(30, end) forwards, blink 0.75s step-end infinite;
   }
 
   @keyframes typing {
@@ -56,8 +58,14 @@
   }
 
   @keyframes blink {
-    50% {
+
+    from,
+    to {
       border-color: transparent;
+    }
+
+    50% {
+      border-color: var(--gold);
     }
   }
 </style>
