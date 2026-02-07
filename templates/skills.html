@@ -3,40 +3,50 @@
 {% block content %}
 <section class="section">
   <h2>Skills</h2>
+  <p style="margin-bottom:2rem; color:var(--fg-muted); font-size:0.9rem;">(Click on a skill to see how I used it)</p>
 
   <h3 style="margin-top:2rem">AI & Generative Tech</h3>
   <div class="skills-container">
-    <div>Agentic AI</div>
-    <div>LLMs (OpenAI, Gemini)</div>
-    <div>LangChain</div>
-    <div>RAG</div>
-    <div>Prompt Engineering</div>
+    <div class="skill-interactive" data-skill="Agentic AI">Agentic AI</div>
+    <div class="skill-interactive" data-skill="LLMs">LLMs (OpenAI, Gemini)</div>
+    <div class="skill-interactive" data-skill="LangChain">LangChain</div>
+    <div class="skill-interactive" data-skill="RAG">RAG</div>
+    <div class="skill-interactive" data-skill="Prompt Engineering">Prompt Engineering</div>
   </div>
 
   <h3 style="margin-top:2rem">Languages</h3>
   <div class="skills-container">
-    <div>Python (2+ yrs)</div>
-    <div>SQL</div>
-    <div>HTML/CSS/JS</div>
+    <div class="skill-interactive" data-skill="Python">Python (2+ yrs)</div>
+    <div class="skill-interactive" data-skill="SQL">SQL</div>
+    <div class="skill-interactive" data-skill="Web Dev">HTML/CSS/JS</div>
   </div>
 
   <h3 style="margin-top:2rem">Data & Enterprise Tools</h3>
   <div class="skills-container">
-    <div>Elasticsearch</div>
-    <div>Kibana</div>
-    <div>Logstash</div>
-    <div>ETL</div>
-    <div>SAP</div>
-    <div>SAP HANA</div>
-    <div>SAP T-Codes</div>
+    <div class="skill-interactive" data-skill="Elasticsearch">Elasticsearch</div>
+    <div class="skill-interactive" data-skill="Kibana">Kibana</div>
+    <div class="skill-interactive" data-skill="Logstash">Logstash</div>
+    <div class="skill-interactive" data-skill="ETL">ETL</div>
+    <div class="skill-interactive" data-skill="SAP">SAP</div>
+    <div class="skill-interactive" data-skill="SAP HANA">SAP HANA</div>
+    <div class="skill-interactive" data-skill="SAP T-Codes">SAP T-Codes</div>
   </div>
 
   <h3 style="margin-top:2rem">Databases & Cloud</h3>
   <div class="skills-container">
-    <div>Oracle</div>
-    <div>MySQL Workbench</div>
-    <div>Azure</div>
-    <div>AWS</div>
+    <div class="skill-interactive" data-skill="Oracle">Oracle</div>
+    <div class="skill-interactive" data-skill="MySQL">MySQL Workbench</div>
+    <div class="skill-interactive" data-skill="Azure">Azure</div>
+    <div class="skill-interactive" data-skill="AWS">AWS</div>
   </div>
 </section>
+
+<!-- Modal Structure -->
+<div class="modal-overlay" id="skillModal">
+  <div class="modal-content">
+    <i class="fa-solid fa-times modal-close" id="closeModal"></i>
+    <h3 class="modal-title" id="modalTitle">Skill Name</h3>
+    <p class="modal-desc" id="modalDesc">Description goes here...</p>
+  </div>
+</div>
 {% endblock %}
