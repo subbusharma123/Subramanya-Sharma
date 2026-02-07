@@ -1,7 +1,46 @@
 // ---------- tiny spa router ----------
 const main = document.getElementById('spa-root');
 
+const skillDetails = {
+  "Agentic AI": "Designing and deploying autonomous AI agents that can plan, execute, and iterate on tasks using frameworks like LangChain and AutoGen.",
+  "LLMs": "Leveraging Large Language Models (OpenAI, Gemini, Anthropic) for natural language understanding, generation, and complex reasoning tasks.",
+  "LangChain": "Building context-aware applications by chaining LLM calls, managing memory, and integrating external tools.",
+  "RAG": "Implementing Retrieval-Augmented Generation to ground LLM responses in custom data using vector databases.",
+  "Prompt Engineering": "Crafting and optimizing prompts to guide model behavior, ensure output quality, and reduce hallucinations.",
+  "Python": "Extensive experience (2+ years) in Python for data analysis, backend development, and automation scripts.",
+  "SQL": "Proficient in writing complex SQL queries for data extraction, manipulation, and database management.",
+  "Web Dev": "Building responsive and interactive web applications using HTML, CSS, and Vanilla JavaScript.",
+  "Elasticsearch": "Using Elasticsearch for distributed search and analytics of large datasets.",
+  "Kibana": "Creating visualizations and dashboards in Kibana to monitor application logs and metrics.",
+  "Logstash": "Configuring Logstash pipelines for data ingestion, transformation, and shipping to Elasticsearch.",
+  "ETL": "Designing and maintaining Extract, Transform, Load (ETL) pipelines for data warehousing.",
+  "SAP": "Experience with SAP systems and modules for enterprise resource planning.",
+  "SAP HANA": "Working with SAP HANA in-memory database for high-performance analytics.",
+  "SAP T-Codes": "Familiarity with SAP Transaction Codes for navigating and executing system functions.",
+  "Oracle": "Working with Oracle databases, PL/SQL, and enterprise data management.",
+  "MySQL": "Managing MySQL databases, schema design, and query optimization.",
+  "Azure": "Deploying and managing cloud services and infrastructure on Microsoft Azure.",
+  "AWS": "Utilizing AWS services (EC2, S3, etc.) for scalable cloud computing solutions."
+};
+
 document.addEventListener('click', e => {
+  // 1. Skill Modal Open
+  if (e.target.closest('.skill-interactive')) {
+    const skillName = e.target.closest('.skill-interactive').getAttribute('data-skill');
+    const modal = document.getElementById('skillModal');
+
+    if (skillDetails[skillName]) {
+      document.getElementById('modalTitle').textContent = skillName;
+      document.getElementById('modalDesc').textContent = skillDetails[skillName];
+      modal.classList.add('active');
+    }
+  }
+
+  // 2. Skill Modal Close
+  if (e.target.closest('#closeModal') || e.target.classList.contains('modal-overlay')) {
+    document.getElementById('skillModal').classList.remove('active');
+  }
+
   // Toggle Interactive Cards
   if (e.target.closest('.interactive-card')) {
     const card = e.target.closest('.interactive-card');
@@ -23,7 +62,7 @@ document.addEventListener('click', e => {
     }
   }
 
-  // Close Modal (X button or outside click)
+  // SPA Navigation
   const link = e.target.closest('a[data-link]');
   if (!link) return;
   e.preventDefault();
