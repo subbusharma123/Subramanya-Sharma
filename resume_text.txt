@@ -1,0 +1,63 @@
+SUBRAMANYA SHARMA B.G.
+subramanyasharma987@gmail.com  |  +91-9901526720  |  GitHub  |  LinkedIn  |  CodeChef
+PROFESSIONAL SUMMARY
+Data Engineer at Kyndryl working in the Agentic AI team, building intelligent systems that automate operational analysis and decision-making.
+Developed multiple AI agents for Incident Analysis, Change Risk Evaluation, Event Intelligence, SLA Monitoring, Actionable Insights, and Security
+Vulnerability detection. Focused on Elasticsearch, Python, and AIOps to transform complex operational data into actionable insights and improve
+enterprise reliability and automation. 2.5+ years of expertise in real-time data pipelines, ETL, Kibana dashboards, and service management (95%+
+SLA compliance).
+EXPERIENCE
+Kyndryl Solutions  |  Data Engineer & AI/ML Developer Sep 2023 - Present
+Bengaluru, India
+- Designed & developed 6 AI-powered agents -- Change Request Risk Assessment, Business SLA Breach Prediction, Event-Correlation-Bridge,
+Incident Correlation with Historical Data, Actionable-Insights-Agent, and Incident-Assignment-Agent -- using LangGraph, LangChain, and LLMs.
+- Automated risk evaluation, SLA monitoring, incident correlation, and intelligent ticket assignment -- reducing manual intervention by ~60%, saving
+an estimated 200+ engineer-hours/month and ~$150K+ annually in operational costs for the customer.
+- Analyzed large datasets with Elasticsearch, Kibana, and SQL, delivering insights that enhanced customer deliverables and informed strategy.
+- Designed intuitive Kibana dashboards to present clear, actionable data visualizations, enabling stakeholders to drive efficient and informed business
+strategies.
+- Ensured data accuracy and quality through rigorous validation, ETL processes, and SQL scripting in Elasticsearch, reducing data processing times
+by ~40% and enhancing operational efficiency for client deliverables.
+- Collaborated with support teams using ServiceNow (SNOW) for ticket tracking and incident resolution, escalating over 150 technical support issues
+related to production and PSE environments, while integrating Logstash for streamlined data pipelines.
+- Maintained end-to-end ticket ownership with MTTR <24 Biz Hrs (INC, >95%) and <40 Biz Hrs (RITM, >90%); zero escalations to upper
+management -- avoiding estimated $50K+ in SLA penalty costs annually.
+- Served as SME for Elasticsearch integration across the Agentic AI team -- designed queries, troubleshot data retrieval, and ensured seamless
+integration for all agent use cases.
+- Provided hands-on assistance to Agentic AI and Data Engineering teams -- clarified ticket context, resolution patterns, and SLA implications,
+reducing knowledge bottlenecks and accelerating development timelines.
+- Automated scheduled data requests and dashboard refresh pipelines, preventing escalations and ensuring data availability with 100% accuracy
+across all accountable dashboards.
+- Maintained 100% compliance with security, leave, shift policies, and time-clocking accuracy throughout the review period.
+PROJECTS
+AI-Powered Agents for AIOps Nov 2024 - Present
+- Built 6 agents: Change Risk Assessment, SLA Breach Prediction, Event-Correlation-Bridge, Incident Correlation (Historical), Actionable-Insights,
+and Incident-Assignment -- automating risk evaluation, monitoring, and ticket routing; reduced incident resolution time by ~35% and cut manual
+triage effort by ~70%.
+- Containerized all agents using Docker and docker-compose for production-ready deployments; gained hands-on Kubernetes orchestration skills.
+Analytical Dashboards Nov 2023 - Present
+- Built and maintained Python-based dashboards (POS, Inventory, Global Resiliency, CSI) using Elasticsearch, Kibana, and SQL for data modeling,
+equipping executives with actionable visualizations in agile sprints.
+- Enhanced dashboards with Python collation scripts and automated ETL integrations, eliminating ~15 hours/week of manual data preparation and
+enabling real-time reporting.
+Service Management Sep 2023 - Present
+- Resolved 150+ ServiceNow (SNOW) incident/RITM tickets, fixing data visualization/control issues for reliable production support and customer
+deliverables.
+- Led account onboarding/offboarding processes, streamlined agile workflows -- reducing onboarding cycle time by ~30%, strengthening client trust
+and operational efficiency.
+TECHNICAL SKILLS
+AI/ML: LangGraph, LangChain, LLMs (GPT), Agentic AI, Prompt Engineering, RAG
+Languages: Python (3+ years), SQL, Java (Basics), C++
+Data & Analytics: Elasticsearch, Kibana, Logstash (ELK Stack), ETL Pipelines, Data Modeling, Real-Time Streaming
+DevOps & Cloud: Docker, Kubernetes, Azure, AWS, CI/CD
+Databases: Elasticsearch, SAP HANA, Oracle, MySQL Workbench
+Enterprise Tools: ServiceNow (SNOW), SAP, SAP T-Codes, Git/GitHub, Agile/Scrum
+EDUCATION
+Jain University  |  Master of Computer Applications (MCA) Jan 2024 - Feb 2026
+Bengaluru, India  |  CGPA: 9.4/10.0
+REVA University  |  Bachelor of Computer Applications (BCA) Sep 2020 - Apr 2023
+Bengaluru, India  |  CGPA: 8.2/10.0
+SOCIETIES & ACTIVITIES
+- Data Team -- TnI Team (AIOps), Kyndryl Solutions: Led team in process improvement, ticket closure, and cross-team knowledge sharing.
+- Volunteer Data Analyst, Kyndryl Solutions: Contributed to off-boarding ticket closure and process optimization across multiple accounts.
+- Fostered a culture of shared ownership, mentoring team members on Elasticsearch, data pipelines, and incident management best practices.
