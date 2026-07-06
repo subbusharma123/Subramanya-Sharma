@@ -1,0 +1,122 @@
+.app-shell {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.app-shell.theme-midnight {
+  --bg: #020617;
+  --surface: #111827;
+  --surface-strong: #0f172a;
+  --border: rgba(148, 163, 184, 0.16);
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-strong: #2563eb;
+  --accent-soft: rgba(56, 189, 248, 0.2);
+}
+
+.app-shell.theme-aurora {
+  --bg: #07131f;
+  --surface: #13253d;
+  --surface-strong: #0b1728;
+  --border: rgba(125, 211, 252, 0.18);
+  --text: #f8fafc;
+  --muted: #cbd5e1;
+  --accent: #7dd3fc;
+  --accent-strong: #34d399;
+  --accent-soft: rgba(125, 211, 252, 0.18);
+}
+
+.app-shell.theme-sunset {
+  --bg: #1f1023;
+  --surface: #2f1c31;
+  --surface-strong: #180b1d;
+  --border: rgba(251, 191, 36, 0.2);
+  --text: #fff7ed;
+  --muted: #fed7aa;
+  --accent: #fb923c;
+  --accent-strong: #f43f5e;
+  --accent-soft: rgba(251, 191, 36, 0.18);
+}
+
+.app-shell.theme-forest {
+  --bg: #04120d;
+  --surface: #10281c;
+  --surface-strong: #08160f;
+  --border: rgba(74, 222, 128, 0.18);
+  --text: #f0fdf4;
+  --muted: #bbf7d0;
+  --accent: #4ade80;
+  --accent-strong: #22c55e;
+  --accent-soft: rgba(74, 222, 128, 0.18);
+}
+
+.sidebar {
+  background: linear-gradient(180deg, var(--surface-strong), var(--surface));
+  padding: 24px;
+  border-right: 1px solid var(--border);
+}
+
+.sidebar__brand {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--accent);
+}
+
+.theme-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.theme-picker select {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar__link {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 12px 14px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.sidebar__link.active {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.main-content {
+  padding: 28px;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 980px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
