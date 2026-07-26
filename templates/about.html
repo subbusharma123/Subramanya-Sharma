@@ -1,31 +1,60 @@
 {% extends "base.html" %}
-{% block title %}About – Subramanya Sharma{% endblock %}
+{% set active = 'about' %}
+{% block title %}About{% endblock %}
 {% block content %}
-<section class="section">
-  <h2>About Me</h2>
-  <p>
-    I am a Bengaluru-based <strong>Data Engineer at Kyndryl</strong> working in the Agentic AI team, building intelligent systems that automate operational analysis and decision-making. I specialize in developing multiple AI agents for Incident Analysis, Change Risk Evaluation, Event Intelligence, SLA Monitoring, Actionable Insights, and Security Vulnerability detection.
-  </p>
-  <p class="mt-1">
-    My expertise lies in using <strong>Elasticsearch, Python, and AIOps</strong> to transform complex operational data into actionable insights and improve enterprise reliability and automation. With 2.5+ years of experience, I excel in real-time data pipelines, ETL, Kibana dashboards, and service management, consistently achieving 95%+ SLA compliance.
-  </p>
-  <p class="mt-1">
-    I am currently pursuing my <strong>Master of Computer Applications (MCA)</strong> at Jain University to further
-    solidify my theoretical foundations while applying them in real-world AI applications. When I'm not coding or
-    exploring the latest in LLMs and RAG, I enjoy solving algorithmic challenges and staying ahead of the rapidly
-    evolving tech landscape.
-  </p>
+<section class="page-section about-page">
+  <div class="section-header">
+    <div class="section-label">Who I Am</div>
+    <h2>About Me</h2>
+  </div>
 
-  <h3 style="margin-top:2rem">Education</h3>
-  <div class="card">
-    <h4>Master of Computer Applications (MCA)</h4>
-    <span class="date">Jan 2024 – Present</span>
-    <p>Jain University, Bengaluru, India</p>
+  <div class="about-intro">
+    <div class="about-bio">
+      <h3>Subramanya Sharma B.G.</h3>
+      <div class="about-subtitle">AI &amp; Data Engineer @ Kyndryl Solutions · Bengaluru, India</div>
+      <p>I build <strong>LLM-powered autonomous agent systems</strong> that automate operational analysis, reduce incident response time, and generate measurable business impact. My work sits at the intersection of <strong>Agentic AI, Elasticsearch, structured data, and enterprise delivery</strong>.</p>
+      <p>Currently on the <strong>Agentic AI team at Kyndryl Solutions</strong>, I have deployed 6 production AI agents that save the organisation USD 150,000+ per year. I am passionate about building systems where AI does the heavy lifting — so people can focus on decisions that matter.</p>
+      <p>Pursuing <strong>MCA at Jain University</strong> (CGPA 9.4/10) alongside full-time work, continuously applying cutting-edge AI/ML research to real production problems.</p>
+      <a href="/resume-view" target="_blank" class="btn-dl-resume"><i class="fas fa-file-pdf"></i>&nbsp; Download Full Resume (PDF)</a>
+    </div>
+    <div class="about-stats-col">
+      <div class="stat-grid">
+        <div class="stat-card"><span class="stat-num">6+</span><span class="stat-lbl">AI Agents Deployed</span></div>
+        <div class="stat-card"><span class="stat-num">60%</span><span class="stat-lbl">Manual Effort Reduced</span></div>
+        <div class="stat-card"><span class="stat-num">$150K+</span><span class="stat-lbl">Annual Cost Savings</span></div>
+        <div class="stat-card"><span class="stat-num">95%+</span><span class="stat-lbl">SLA Compliance</span></div>
+        <div class="stat-card"><span class="stat-num">2.5 yrs</span><span class="stat-lbl">Industry Experience</span></div>
+        <div class="stat-card"><span class="stat-num">9.4</span><span class="stat-lbl">MCA CGPA</span></div>
+      </div>
+    </div>
   </div>
-  <div class="card">
-    <h4>Bachelor of Computer Applications (BCA)</h4>
-    <span class="date">Sep 2020 – Apr 2023</span>
-    <p>REVA University, Bengaluru, India | CGPA: 8.2 / 10</p>
+
+  <!-- CONTACT -->
+  <div class="about-contact-area">
+    <div class="section-header" style="margin-bottom:2rem">
+      <div class="section-label">Get In Touch</div>
+      <h2>Contact</h2>
+      <p>Open to opportunities, collaboration &amp; consulting</p>
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:subramanyasharma987@gmail.com" class="contact-card">
+        <i class="fas fa-envelope"></i>
+        <div><strong>Email</strong><span>subramanyasharma987@gmail.com</span></div>
+      </a>
+      <a href="tel:+919901526720" class="contact-card">
+        <i class="fas fa-phone"></i>
+        <div><strong>Phone</strong><span>+91-9901526720</span></div>
+      </a>
+      <a href="https://www.linkedin.com/in/subramanya-sharma-b-g/" target="_blank" class="contact-card">
+        <i class="fab fa-linkedin"></i>
+        <div><strong>LinkedIn</strong><span>subramanya-sharma-b-g</span></div>
+      </a>
+      <a href="https://github.com/subbusharma123" target="_blank" class="contact-card">
+        <i class="fab fa-github"></i>
+        <div><strong>GitHub</strong><span>subbusharma123</span></div>
+      </a>
+    </div>
   </div>
+
 </section>
 {% endblock %}

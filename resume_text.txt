@@ -1,11 +1,9 @@
 SUBRAMANYA SHARMA B.G.
 subramanyasharma987@gmail.com  |  +91-9901526720  |  GitHub  |  LinkedIn  |  CodeChef
 PROFESSIONAL SUMMARY
-Data Engineer at Kyndryl working in the Agentic AI team, building intelligent systems that automate operational analysis and decision-making.
-Developed multiple AI agents for Incident Analysis, Change Risk Evaluation, Event Intelligence, SLA Monitoring, Actionable Insights, and Security
-Vulnerability detection. Focused on Elasticsearch, Python, and AIOps to transform complex operational data into actionable insights and improve
-enterprise reliability and automation. 2.5+ years of expertise in real-time data pipelines, ETL, Kibana dashboards, and service management (95%+
-SLA compliance).
+AI & Data Engineer with 2.5+ years building agentic AI, observability platforms, and production data pipelines. I design and ship autonomous
+agents and analytics workflows that convert operational telemetry into decision-ready insights, reduce manual toil, and deliver measurable cost savings.
+Core strengths: Elasticsearch, Python, ETL design, RAG-enabled agents, Kibana visualizations, and scalable monitoring pipelines.
 EXPERIENCE
 Kyndryl Solutions  |  Data Engineer & AI/ML Developer Sep 2023 - Present
 Bengaluru, India

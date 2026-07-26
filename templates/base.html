@@ -1,50 +1,41 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-  <meta name="theme-color" content="#667eea"> <!-- Android toolbar colour -->
-  <title>{% block title %}Subramanya Sharma B.G.{% endblock %}</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-  <!-- Your styles & scripts -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/spa.css') }}" />
-  <script defer src="{{ url_for('static', filename='js/spa.js') }}"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Subramanya Sharma B.G.{% endblock %} — AI & Data Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+  {% block extra_css %}{% endblock %}
 </head>
-
 <body>
-  <!-- ===== NAVBAR ===== -->
-  <nav class="navbar">
-    <div class="logo">Data Engineer</div>
-    <ul class="nav-links">
-      <li><a href="{{ url_for('home') }}" data-link><i class="fa-solid fa-house"></i></a></li>
-      <li><a href="{{ url_for('about') }}" data-link>About</a></li>
-      <li><a href="{{ url_for('experience') }}" data-link>Experience</a></li>
-      <li><a href="{{ url_for('projects') }}" data-link>Projects</a></li>
-      <li><a href="{{ url_for('skills') }}" data-link>Skills</a></li>
-      <li><a href="{{ url_for('contact') }}" data-link>Contact</a></li>
-      <li><a href="{{ url_for('certifications') }}" data-link>Certifications</a></li>
-      <li><a href="{{ url_for('resume_view') }}" class="btn-download" target="_blank">View Resume <i
-            class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
-    </ul>
-    <div class="hamburger" id="hamburger">&#9776;</div>
-  </nav>
+<canvas id="three-canvas"></canvas>
 
-  <!-- ===== PAGE CONTENT ===== -->
-  <main id="spa-root">
-    {% block content %}{% endblock %}
-  </main>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="logo"><span class="logo-cube">◈</span> Subramanya Sharma <b class="G">B.G.</b></a>
+    <div class="nav-links">
+      <a href="/portfolio"      class="{% if active=='portfolio'      %}nav-active{% endif %}">Portfolio</a>
+      <a href="/experience"     class="{% if active=='experience'     %}nav-active{% endif %}">Experience</a>
+      <a href="/skills"         class="{% if active=='skills'         %}nav-active{% endif %}">Skills</a>
+      <a href="/certifications" class="{% if active=='certifications' %}nav-active{% endif %}">Certifications</a>
+      <a href="/about"          class="{% if active=='about'          %}nav-active{% endif %}">About</a>
+      <a href="/resume-view" target="_blank" class="btn-resume-nav"><i class="fas fa-file-pdf"></i> Resume</a>
+      <button id="theme-btn" class="btn-theme" onclick="toggleTheme()" title="Toggle light/dark mode"><i class="fas fa-sun"></i></button>
+    </div>
+  </div>
+</nav>
 
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    <p>© <span id="year"></span> Subramanya Sharma B.G.</p>
-  </footer>
+<div id="page-wrap">
+  {% block content %}{% endblock %}
+</div>
+
+<footer>
+  <p>&copy; 2026 Subramanya Sharma B.G. &mdash; AI &amp; Data Engineer, Bengaluru</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+{% block page_js %}{% endblock %}
 </body>
-
 </html>
