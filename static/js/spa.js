@@ -1,6 +1,22 @@
 // ---------- tiny spa router ----------
 const main = document.getElementById('spa-root');
 
+// Projects reference with detailed descriptions
+const projectsMap = {
+  "AI-Powered Agents for AIOps": {
+    description: "Six AI-powered agents for change risk assessment, SLA breach prediction, incident correlation, and intelligent ticket routing using LangGraph and LangChain. Reduced manual triage by 60%, shortened resolution time by 35%, and saved $150K+ annually.",
+    skills: ["LangGraph", "Agentic AI", "LLMs", "LangChain", "Prompt Engineering", "Python", "Docker", "Kubernetes", "Azure", "AWS"]
+  },
+  "Analytical Dashboards & Executive Reporting": {
+    description: "Built and maintained dashboards for POS, inventory, resiliency, and customer satisfaction using Elasticsearch, Kibana, and SQL. Eliminated 15+ hours per week of manual reporting and achieved 100% data consistency.",
+    skills: ["Elasticsearch", "Kibana", "Logstash", "ETL Pipelines", "Data Modeling", "SQL", "Python", "Real-Time Streaming"]
+  },
+  "Service Management Enablement": {
+    description: "Resolved 150+ ServiceNow incidents and RITM requests. Streamlined onboarding/offboarding workflows and reduced cycle time by 30% through process automation and improved escalation paths.",
+    skills: ["ServiceNow", "Agile/Scrum", "Python", "Git/GitHub"]
+  }
+};
+
 const skillDetails = {
   "LangGraph": "Building multi-agent systems and stateful applications using LangGraph and LangChain workflows.",
   "Agentic AI": "Designing and deploying autonomous AI agents that can plan, execute, and iterate on tasks.",
@@ -33,6 +49,17 @@ const skillDetails = {
   "Agile/Scrum": "Participating in agile sprints to deliver executive-ready data visualizations incrementally."
 };
 
+// Helper function to get projects using a specific skill
+function getProjectsForSkill(skillName) {
+  const projects = [];
+  for (const [projectName, projectData] of Object.entries(projectsMap)) {
+    if (projectData.skills.includes(skillName)) {
+      projects.push({ name: projectName, description: projectData.description });
+    }
+  }
+  return projects;
+}
+
 document.addEventListener('click', e => {
   // 1. Skill Modal Open
   if (e.target.closest('.skill-interactive')) {
@@ -41,7 +68,23 @@ document.addEventListener('click', e => {
 
     if (skillDetails[skillName]) {
       document.getElementById('modalTitle').textContent = skillName;
-      document.getElementById('modalDesc').textContent = skillDetails[skillName];
+      
+      let modalHTML = '<p style="margin-bottom: 1rem;">' + skillDetails[skillName] + '</p>';
+      
+      const projects = getProjectsForSkill(skillName);
+      if (projects.length > 0) {
+        modalHTML += '<h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--gold);">Projects using this skill:</h4>';
+        projects.forEach(project => {
+          modalHTML += '<div style="background: var(--card-bg); padding: 0.8rem; border-radius: 0.5rem; margin-bottom: 0.8rem; border-left: 3px solid var(--gold);">';
+          modalHTML += '<h5 style="margin: 0 0 0.5rem 0;">' + project.name + '</h5>';
+          modalHTML += '<p style="margin: 0; font-size: 0.9rem; color: var(--fg-dim);">' + project.description + '</p>';
+          modalHTML += '</div>';
+        });
+      } else {
+        modalHTML += '<p style="margin-top: 1rem; font-size: 0.9rem; color: var(--fg-dim);">This skill is foundational and supports multiple projects.</p>';
+      }
+      
+      document.getElementById('modalDesc').innerHTML = modalHTML;
       modal.classList.add('active');
     }
   }
@@ -125,4 +168,77 @@ document.querySelectorAll('.nav-links a[data-link]').forEach(a =>
 
 // ----- footer year -----
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// ----- Modal handling -----
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) modal.classList.add('active');
+}
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) modal.classList.remove('active');
+}
+
+const contactBtn = document.getElementById('contact-float');
+if (contactBtn) {
+  contactBtn.addEventListener('click', () => openModal('contact-modal'));
+}
+const contactClose = document.getElementById('contact-close');
+if (contactClose) {
+  contactClose.addEventListener('click', () => closeModal('contact-modal'));
+}
+
+const resumeBtn = document.getElementById('resume-btn');
+if (resumeBtn) {
+  resumeBtn.addEventListener('click', () => openModal('resume-modal'));
+}
+const resumeClose = document.getElementById('resume-close');
+if (resumeClose) {
+  resumeClose.addEventListener('click', () => closeModal('resume-modal'));
+}
+
+const resumeViewBtn = document.getElementById('resume-view-btn');
+const resumeDownloadBtn = document.getElementById('resume-download-btn');
+const resumeViewPanel = document.getElementById('resume-view-panel');
+const resumeDownloadPanel = document.getElementById('resume-download-panel');
+
+function setResumeMode(mode) {
+  if (!resumeViewBtn || !resumeDownloadBtn || !resumeViewPanel || !resumeDownloadPanel) return;
+  const isView = mode === 'view';
+  resumeViewBtn.classList.toggle('active', isView);
+  resumeDownloadBtn.classList.toggle('active', !isView);
+  resumeViewPanel.classList.toggle('active', isView);
+  resumeDownloadPanel.classList.toggle('active', !isView);
+}
+
+if (resumeViewBtn) resumeViewBtn.addEventListener('click', () => setResumeMode('view'));
+if (resumeDownloadBtn) resumeDownloadBtn.addEventListener('click', () => setResumeMode('download'));
+
+function triggerResumeDownload() {
+  const link = document.createElement('a');
+  link.href = window.resumeUrl || '/static/docs/SubramanyaResume.pdf';
+  link.download = window.resumeFilename || 'SubramanyaResume.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+const resumeDownloadDirect = document.getElementById('resume-download-direct');
+if (resumeDownloadDirect) {
+  resumeDownloadDirect.addEventListener('click', triggerResumeDownload);
+}
+const resumeDownload = document.getElementById('resume-download');
+if (resumeDownload) {
+  resumeDownload.addEventListener('click', triggerResumeDownload);
+}
+
+// Close modals when clicking overlay
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.classList.remove('active');
+    }
+  });
+});
+
 

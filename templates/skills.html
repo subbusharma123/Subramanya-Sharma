@@ -1,71 +1,104 @@
 {% extends "base.html" %}
-{% block title %}Skills – Subramanya Sharma{% endblock %}
+{% set active = 'skills' %}
+{% block title %}Skills{% endblock %}
 {% block content %}
-<section class="section">
-  <h2>Skills</h2>
-  <p style="margin-bottom:2rem; color:var(--fg-muted); font-size:0.9rem;">(Click on a skill to see how I used it)</p>
-
-  <h3 style="margin-top:2rem">AI/ML</h3>
-  <div class="skills-container">
-    <div class="skill-interactive" data-skill="LangGraph">LangGraph</div>
-    <div class="skill-interactive" data-skill="LangChain">LangChain</div>
-    <div class="skill-interactive" data-skill="LLMs">LLMs (GPT)</div>
-    <div class="skill-interactive" data-skill="Agentic AI">Agentic AI</div>
-    <div class="skill-interactive" data-skill="Prompt Engineering">Prompt Engineering</div>
-    <div class="skill-interactive" data-skill="RAG">RAG</div>
+<section class="page-section">
+  <div class="section-header">
+    <div class="section-label">Expertise</div>
+    <h2>Technical Skills</h2>
+    <p>2.5+ years of hands-on production experience</p>
   </div>
 
-  <h3 style="margin-top:2rem">Languages</h3>
-  <div class="skills-container">
-    <div class="skill-interactive" data-skill="Python">Python (3+ yrs)</div>
-    <div class="skill-interactive" data-skill="SQL">SQL</div>
-    <div class="skill-interactive" data-skill="Java">Java (Basics)</div>
-    <div class="skill-interactive" data-skill="C++">C++</div>
-  </div>
+  <div class="skills-page-grid">
 
-  <h3 style="margin-top:2rem">Data & Analytics</h3>
-  <div class="skills-container">
-    <div class="skill-interactive" data-skill="Elasticsearch">Elasticsearch</div>
-    <div class="skill-interactive" data-skill="Kibana">Kibana</div>
-    <div class="skill-interactive" data-skill="Logstash">Logstash</div>
-    <div class="skill-interactive" data-skill="ETL Pipelines">ETL Pipelines</div>
-    <div class="skill-interactive" data-skill="Data Modeling">Data Modeling</div>
-    <div class="skill-interactive" data-skill="Real-Time Streaming">Real-Time Streaming</div>
-  </div>
+    <div class="skill-block">
+      <div class="skill-block-header grad-purple">
+        <i class="fas fa-robot"></i>
+        <h3>Agentic AI &amp; LLMs</h3>
+      </div>
+      <div class="skill-block-body">
+        <div class="skill-bar-item"><span>LangGraph</span><div class="sbar"><div class="sfill" style="width:95%"></div></div><span class="spct">Expert</span></div>
+        <div class="skill-bar-item"><span>LangChain</span><div class="sbar"><div class="sfill" style="width:92%"></div></div><span class="spct">Expert</span></div>
+        <div class="skill-bar-item"><span>OpenAI / GPT-4</span><div class="sbar"><div class="sfill" style="width:90%"></div></div><span class="spct">Expert</span></div>
+        <div class="skill-bar-item"><span>Claude / Gemini</span><div class="sbar"><div class="sfill" style="width:80%"></div></div><span class="spct">Advanced</span></div>
+        <div class="skill-bar-item"><span>Prompt Engineering</span><div class="sbar"><div class="sfill" style="width:90%"></div></div><span class="spct">Expert</span></div>
+        <div class="skill-bar-item"><span>RAG Systems</span><div class="sbar"><div class="sfill" style="width:85%"></div></div><span class="spct">Advanced</span></div>
+        <div class="skill-tags">
+          <span>Multi-Agent Systems</span><span>Tool Calling</span><span>State Machines</span><span>Agentic Workflows</span>
+        </div>
+      </div>
+    </div>
 
-  <h3 style="margin-top:2rem">DevOps & Cloud</h3>
-  <div class="skills-container">
-    <div class="skill-interactive" data-skill="Docker">Docker</div>
-    <div class="skill-interactive" data-skill="Kubernetes">Kubernetes</div>
-    <div class="skill-interactive" data-skill="Azure">Azure</div>
-    <div class="skill-interactive" data-skill="AWS">AWS</div>
-    <div class="skill-interactive" data-skill="CI/CD">CI/CD</div>
-  </div>
+    <div class="skill-block">
+      <div class="skill-block-header grad-cyan">
+        <i class="fas fa-database"></i>
+        <h3>Data &amp; Search</h3>
+      </div>
+      <div class="skill-block-body">
+        <div class="skill-bar-item"><span>Python</span><div class="sbar"><div class="sfill" style="width:95%"></div></div><span class="spct">Expert</span></div>
+        <div class="skill-bar-item"><span>SQL / PostgreSQL</span><div class="sbar"><div class="sfill" style="width:90%"></div></div><span class="spct">Expert</span></div>
+        <div class="skill-bar-item"><span>Elasticsearch</span><div class="sbar"><div class="sfill" style="width:88%"></div></div><span class="spct">Advanced</span></div>
+        <div class="skill-bar-item"><span>Kibana</span><div class="sbar"><div class="sfill" style="width:88%"></div></div><span class="spct">Advanced</span></div>
+        <div class="skill-bar-item"><span>Logstash / ELK</span><div class="sbar"><div class="sfill" style="width:82%"></div></div><span class="spct">Advanced</span></div>
+        <div class="skill-bar-item"><span>ETL Pipelines</span><div class="sbar"><div class="sfill" style="width:85%"></div></div><span class="spct">Advanced</span></div>
+        <div class="skill-tags">
+          <span>Data Modelling</span><span>Real-Time Streaming</span><span>Pandas</span><span>Data Validation</span>
+        </div>
+      </div>
+    </div>
 
-  <h3 style="margin-top:2rem">Databases</h3>
-  <div class="skills-container">
-    <div class="skill-interactive" data-skill="Elasticsearch">Elasticsearch</div>
-    <div class="skill-interactive" data-skill="SAP HANA">SAP HANA</div>
-    <div class="skill-interactive" data-skill="Oracle">Oracle</div>
-    <div class="skill-interactive" data-skill="MySQL Workbench">MySQL Workbench</div>
-  </div>
+    <div class="skill-block">
+      <div class="skill-block-header grad-orange">
+        <i class="fas fa-cloud"></i>
+        <h3>Cloud &amp; DevOps</h3>
+      </div>
+      <div class="skill-block-body">
+        <div class="skill-bar-item"><span>Docker</span><div class="sbar"><div class="sfill" style="width:90%"></div></div><span class="spct">Expert</span></div>
+        <div class="skill-bar-item"><span>Kubernetes / AKS</span><div class="sbar"><div class="sfill" style="width:82%"></div></div><span class="spct">Advanced</span></div>
+        <div class="skill-bar-item"><span>Azure</span><div class="sbar"><div class="sfill" style="width:80%"></div></div><span class="spct">Advanced</span></div>
+        <div class="skill-bar-item"><span>AWS</span><div class="sbar"><div class="sfill" style="width:72%"></div></div><span class="spct">Proficient</span></div>
+        <div class="skill-bar-item"><span>CI/CD / GitHub Actions</span><div class="sbar"><div class="sfill" style="width:85%"></div></div><span class="spct">Advanced</span></div>
+        <div class="skill-bar-item"><span>Jenkins</span><div class="sbar"><div class="sfill" style="width:68%"></div></div><span class="spct">Proficient</span></div>
+        <div class="skill-tags">
+          <span>Container Orchestration</span><span>Zero-Downtime Deploy</span><span>Auto-scaling</span>
+        </div>
+      </div>
+    </div>
 
-  <h3 style="margin-top:2rem">Enterprise Tools</h3>
-  <div class="skills-container">
-    <div class="skill-interactive" data-skill="ServiceNow">ServiceNow (SNOW)</div>
-    <div class="skill-interactive" data-skill="SAP">SAP</div>
-    <div class="skill-interactive" data-skill="SAP T-Codes">SAP T-Codes</div>
-    <div class="skill-interactive" data-skill="Git/GitHub">Git/GitHub</div>
-    <div class="skill-interactive" data-skill="Agile/Scrum">Agile/Scrum</div>
+    <div class="skill-block">
+      <div class="skill-block-header grad-blue">
+        <i class="fas fa-cogs"></i>
+        <h3>Enterprise &amp; Delivery</h3>
+      </div>
+      <div class="skill-block-body">
+        <div class="skill-bar-item"><span>ServiceNow</span><div class="sbar"><div class="sfill" style="width:88%"></div></div><span class="spct">Advanced</span></div>
+        <div class="skill-bar-item"><span>SAP</span><div class="sbar"><div class="sfill" style="width:72%"></div></div><span class="spct">Proficient</span></div>
+        <div class="skill-bar-item"><span>Agile / Scrum</span><div class="sbar"><div class="sfill" style="width:90%"></div></div><span class="spct">Expert</span></div>
+        <div class="skill-bar-item"><span>System Design</span><div class="sbar"><div class="sfill" style="width:85%"></div></div><span class="spct">Advanced</span></div>
+        <div class="skill-bar-item"><span>API Design (REST)</span><div class="sbar"><div class="sfill" style="width:88%"></div></div><span class="spct">Advanced</span></div>
+        <div class="skill-bar-item"><span>Tech Leadership</span><div class="sbar"><div class="sfill" style="width:78%"></div></div><span class="spct">Advanced</span></div>
+        <div class="skill-tags">
+          <span>ITSM / ITIL</span><span>Microservices</span><span>Architecture Patterns</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
+{% endblock %}
 
-<!-- Modal Structure -->
-<div class="modal-overlay" id="skillModal">
-  <div class="modal-content">
-    <i class="fa-solid fa-times modal-close" id="closeModal"></i>
-    <h3 class="modal-title" id="modalTitle">Skill Name</h3>
-    <p class="modal-desc" id="modalDesc">Description goes here...</p>
-  </div>
-</div>
+{% block page_js %}
+<script>
+// Animate bars on load
+window.addEventListener('load', function() {
+  document.querySelectorAll('.sfill').forEach(function(bar) {
+    var w = bar.style.width;
+    bar.style.width = '0';
+    setTimeout(function() {
+      bar.style.transition = 'width 1.2s cubic-bezier(.4,0,.2,1)';
+      bar.style.width = w;
+    }, 200);
+  });
+});
+</script>
 {% endblock %}

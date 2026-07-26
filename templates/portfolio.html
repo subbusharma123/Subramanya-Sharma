@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+{% set active = 'portfolio' %}
+{% block title %}Portfolio{% endblock %}
+{% block content %}
+<section class="page-section portfolio-page">
+  <div class="section-header">
+    <div class="section-label">What I Build</div>
+    <h2>Portfolio</h2>
+    <p>Click any card to flip and read full project details &nbsp;·&nbsp; Click &times; to flip back</p>
+  </div>
+  <div class="flip-grid">
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front grad-purple">
+          <div class="card-pattern"><svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="250" cy="50" r="100" fill="rgba(255,255,255,.05)"/><circle cx="50" cy="260" r="120" fill="rgba(255,255,255,.04)"/><circle cx="150" cy="150" r="60" fill="rgba(255,255,255,.04)"/><circle cx="150" cy="150" r="25" fill="rgba(255,255,255,.08)"/></svg></div>
+          <div class="card-front-body">
+            <div class="card-icon-wrap"><i class="fas fa-robot"></i></div>
+            <span class="card-tag">Flagship Project</span>
+            <h3>Agentic AI Agents</h3>
+            <p>6 autonomous LangGraph agents automating AIOps at Kyndryl</p>
+            <div class="card-chips"><span>LangGraph</span><span>Python</span><span>OpenAI</span><span>Azure</span><span>ServiceNow</span></div>
+            <div class="card-flip-hint"><i class="fas fa-sync-alt"></i>&nbsp; Click card to flip</div>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <button class="flip-back-btn" aria-label="flip back">&#x2715;</button>
+          <h3>Agentic AI for AIOps — Flagship Project</h3>
+          <p class="back-overview">Architected and deployed 6 production-grade autonomous AI agents at Kyndryl using LangGraph state machines. Each agent handles a specialised stage of the AIOps incident lifecycle — together they automated what previously required a full team of L1 engineers.</p>
+          <div class="back-section-label">Key Features</div>
+          <div class="back-agents"><span>Incident Analyser Agent</span><span>Risk Scorer Agent</span><span>Routing Agent</span><span>Runbook Agent</span><span>Summary Agent</span><span>Feedback Agent</span></div>
+          <div class="back-section-label">Highlights</div>
+          <ul class="back-bullets"><li>60% reduction in manual triage effort across 300+ daily tickets</li><li>35% faster incident resolution — P1s resolved before SLA breach</li><li>USD 150,000+ annual savings from automation</li><li>Integrated with OpenAI GPT-4o, Claude 3.5, and Gemini with fallback chains</li><li>Deployed on Azure AKS with Kubernetes auto-scaling</li></ul>
+          <div class="back-stack"><i class="fas fa-layer-group"></i>&nbsp; <strong>Stack:</strong> LangGraph · LangChain · OpenAI GPT-4o · Claude 3.5 · Python · Docker · Kubernetes · Azure AKS · ServiceNow REST API · GitHub Actions</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front grad-pink">
+          <div class="card-pattern"><svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><polyline points="20,200 80,130 150,160 210,90 270,120" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="3"/><circle cx="80" cy="130" r="7" fill="rgba(255,255,255,.3)"/><circle cx="210" cy="90" r="7" fill="rgba(255,255,255,.3)"/><rect x="20" y="200" width="35" height="65" fill="rgba(255,255,255,.07)"/><rect x="80" y="130" width="35" height="135" fill="rgba(255,255,255,.07)"/><rect x="210" y="90" width="35" height="175" fill="rgba(255,255,255,.07)"/></svg></div>
+          <div class="card-front-body">
+            <div class="card-icon-wrap"><i class="fas fa-chart-line"></i></div>
+            <span class="card-tag">Real-Time Analytics</span>
+            <h3>Kibana Dashboards</h3>
+            <p>Executive SLA & operational dashboards across Kyndryl accounts</p>
+            <div class="card-chips"><span>Kibana</span><span>Elasticsearch</span><span>Logstash</span><span>Python</span></div>
+            <div class="card-flip-hint"><i class="fas fa-sync-alt"></i>&nbsp; Click card to flip</div>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <button class="flip-back-btn" aria-label="flip back">&#x2715;</button>
+          <h3>Real-Time Kibana Dashboards</h3>
+          <p class="back-overview">Built 8+ executive-level Kibana dashboards consumed by L1/L2 engineers and senior management — providing live operational visibility across multiple Kyndryl enterprise accounts.</p>
+          <div class="back-section-label">Key Features</div>
+          <div class="back-agents"><span>SLA Breach Monitor</span><span>Incident Volume Heatmap</span><span>MTTR Tracker</span><span>Resolver Scoreboard</span><span>Executive Summary</span><span>Anomaly Alerts</span></div>
+          <div class="back-section-label">Highlights</div>
+          <ul class="back-bullets"><li>15+ hours/week of manual reporting eliminated through automation</li><li>100% data consistency — single source of truth for all SLA metrics</li><li>Real-time SLA breach alerting 30 minutes before breach threshold</li><li>Incident volume heatmaps helped reduce after-hours P1s by 20%</li><li>Resolver Efficiency Scoreboards used in monthly performance reviews</li></ul>
+          <div class="back-stack"><i class="fas fa-layer-group"></i>&nbsp; <strong>Stack:</strong> Kibana · Elasticsearch · Logstash · Filebeat · Python · ELK Stack · Kibana Reporting · Kibana Watcher</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front grad-cyan">
+          <div class="card-pattern"><svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><rect x="50" y="70" width="55" height="190" rx="5" fill="rgba(255,255,255,.08)"/><rect x="125" y="40" width="55" height="220" rx="5" fill="rgba(255,255,255,.11)"/><rect x="200" y="100" width="55" height="160" rx="5" fill="rgba(255,255,255,.07)"/><line x1="30" y1="280" x2="280" y2="280" stroke="rgba(255,255,255,.2)" stroke-width="2"/></svg></div>
+          <div class="card-front-body">
+            <div class="card-icon-wrap"><i class="fas fa-database"></i></div>
+            <span class="card-tag">Data Engineering</span>
+            <h3>Data & SQL Pipelines</h3>
+            <p>High-throughput ETL pipelines and optimised PostgreSQL schemas</p>
+            <div class="card-chips"><span>SQL</span><span>PostgreSQL</span><span>Python</span><span>Pandas</span><span>ETL</span></div>
+            <div class="card-flip-hint"><i class="fas fa-sync-alt"></i>&nbsp; Click card to flip</div>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <button class="flip-back-btn" aria-label="flip back">&#x2715;</button>
+          <h3>Data Engineering & SQL Automation</h3>
+          <p class="back-overview">Designed and maintained production ETL pipelines and relational schemas for enterprise operational data — achieving 100% data integrity while automating all recurring extraction and reporting tasks.</p>
+          <div class="back-section-label">Key Features</div>
+          <div class="back-agents"><span>ServiceNow ETL</span><span>SLA Aggregation</span><span>CMDB Sync</span><span>Report Automation</span><span>Data Validation</span><span>Schema Migration</span></div>
+          <div class="back-section-label">Highlights</div>
+          <ul class="back-bullets"><li>25+ recurring data requests automated — saving ~8 hours/week</li><li>SLA aggregation query optimised from 4 minutes → 3 seconds</li><li>PostgreSQL schemas normalised to 3NF with sub-100ms queries on 10M+ rows</li><li>Python ETL jobs on Kubernetes CronJobs with retry logic and dead-letter queues</li><li>Data quality validation layer catches schema drift before dashboards load</li></ul>
+          <div class="back-stack"><i class="fas fa-layer-group"></i>&nbsp; <strong>Stack:</strong> SQL · PostgreSQL · Python · Pandas · SQLAlchemy · Kubernetes CronJobs · ServiceNow REST API · ETL Pipelines</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front grad-warm">
+          <div class="card-pattern"><svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="80" cy="80" r="30" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/><circle cx="220" cy="80" r="30" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/><circle cx="150" cy="230" r="30" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/><circle cx="150" cy="150" r="45" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.3)" stroke-width="2"/><line x1="110" y1="80" x2="150" y2="112" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/><line x1="190" y1="80" x2="150" y2="112" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/><line x1="150" y1="195" x2="150" y2="200" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/></svg></div>
+          <div class="card-front-body">
+            <div class="card-icon-wrap"><i class="fas fa-brain"></i></div>
+            <span class="card-tag">AI / LLMs</span>
+            <h3>LLM Orchestration</h3>
+            <p>Stateful multi-agent workflows with LangGraph and RAG</p>
+            <div class="card-chips"><span>LangGraph</span><span>OpenAI</span><span>Claude</span><span>Gemini</span><span>RAG</span></div>
+            <div class="card-flip-hint"><i class="fas fa-sync-alt"></i>&nbsp; Click card to flip</div>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <button class="flip-back-btn" aria-label="flip back">&#x2715;</button>
+          <h3>LLM Orchestration & Multi-Agent Systems</h3>
+          <p class="back-overview">Designed and deployed multi-agent systems using LangGraph state machines with tool-calling, persistent memory, conditional branching, and RAG for internal knowledge retrieval across multiple LLM providers.</p>
+          <div class="back-section-label">Key Features</div>
+          <div class="back-agents"><span>State Machine Design</span><span>Tool-Calling Agents</span><span>RAG Pipelines</span><span>Prompt Engineering</span><span>Model Fallback Chains</span><span>LLM Evaluation</span></div>
+          <div class="back-section-label">Highlights</div>
+          <ul class="back-bullets"><li>LangGraph stateful workflows with persistent memory across agent turns</li><li>RAG pipelines over internal knowledge bases — runbooks, past incidents, CMDB</li><li>OpenAI GPT-4o primary with Claude 3.5 and Gemini as fallback chain</li><li>Prompt caching and batching reducing LLM API costs by 40%</li><li>Evaluation framework comparing model outputs across accuracy, latency, and cost</li></ul>
+          <div class="back-stack"><i class="fas fa-layer-group"></i>&nbsp; <strong>Stack:</strong> LangGraph · LangChain · OpenAI GPT-4o · Anthropic Claude 3.5 · Google Gemini · FAISS · Python · Vector Databases</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front grad-teal">
+          <div class="card-pattern"><svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="150" cy="150" r="115" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="2"/><circle cx="150" cy="150" r="75" fill="none" stroke="rgba(255,255,255,.11)" stroke-width="2"/><circle cx="150" cy="150" r="38" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.2)" stroke-width="2"/><line x1="150" y1="35" x2="150" y2="265" stroke="rgba(255,255,255,.07)" stroke-width="1"/><line x1="35" y1="150" x2="265" y2="150" stroke="rgba(255,255,255,.07)" stroke-width="1"/></svg></div>
+          <div class="card-front-body">
+            <div class="card-icon-wrap"><i class="fas fa-search"></i></div>
+            <span class="card-tag">Search & Analytics</span>
+            <h3>Elasticsearch Stack</h3>
+            <p>Distributed search, real-time analytics and ELK at scale</p>
+            <div class="card-chips"><span>Elasticsearch</span><span>Kibana</span><span>Logstash</span><span>Filebeat</span></div>
+            <div class="card-flip-hint"><i class="fas fa-sync-alt"></i>&nbsp; Click card to flip</div>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <button class="flip-back-btn" aria-label="flip back">&#x2715;</button>
+          <h3>Elasticsearch & ELK Stack Engineering</h3>
+          <p class="back-overview">Deep production expertise in the Elasticsearch stack — from index design and shard strategy to complex aggregations, real-time alerting, and high-volume Logstash ingestion pipelines processing 50K+ events per hour.</p>
+          <div class="back-section-label">Key Features</div>
+          <div class="back-agents"><span>Index Mapping Design</span><span>ILM Hot-Warm-Cold</span><span>Logstash Pipelines</span><span>Kibana Watcher Alerts</span><span>Custom Analysers</span><span>Aggregation Queries</span></div>
+          <div class="back-section-label">Highlights</div>
+          <ul class="back-bullets"><li>Millisecond search response across millions of incident and log records</li><li>Logstash pipelines processing 50,000+ events/hour from ServiceNow and syslog</li><li>ILM policies with hot-warm-cold tiers — reduced storage costs by 35%</li><li>Kibana Watcher alerts triggering PagerDuty/Slack for SLA breach risk</li><li>Custom analysers for keyword normalisation across multi-language ticket data</li></ul>
+          <div class="back-stack"><i class="fas fa-layer-group"></i>&nbsp; <strong>Stack:</strong> Elasticsearch · Kibana · Logstash · Filebeat · Index Lifecycle Management · Kibana Watcher · Python · ELK Stack</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front grad-orange">
+          <div class="card-pattern"><svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><rect x="75" y="95" width="65" height="65" rx="7" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/><rect x="165" y="95" width="65" height="65" rx="7" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/><rect x="120" y="200" width="65" height="65" rx="7" fill="rgba(255,255,255,.11)" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/><line x1="107" y1="160" x2="152" y2="200" stroke="rgba(255,255,255,.2)" stroke-width="1.5" stroke-dasharray="5,3"/><line x1="198" y1="160" x2="152" y2="200" stroke="rgba(255,255,255,.2)" stroke-width="1.5" stroke-dasharray="5,3"/></svg></div>
+          <div class="card-front-body">
+            <div class="card-icon-wrap"><i class="fas fa-cloud"></i></div>
+            <span class="card-tag">Infrastructure</span>
+            <h3>Cloud & DevOps</h3>
+            <p>Containerised AI deployments on Azure AKS and AWS</p>
+            <div class="card-chips"><span>Docker</span><span>Kubernetes</span><span>Azure AKS</span><span>AWS</span><span>GitHub Actions</span></div>
+            <div class="card-flip-hint"><i class="fas fa-sync-alt"></i>&nbsp; Click card to flip</div>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <button class="flip-back-btn" aria-label="flip back">&#x2715;</button>
+          <h3>Cloud & DevOps Infrastructure</h3>
+          <p class="back-overview">Containerised and deployed all 6 AI agents and data services across multi-cloud environments. Implemented full CI/CD automation with zero-downtime deployments, auto-scaling, and enterprise-grade security practices.</p>
+          <div class="back-section-label">Key Features</div>
+          <div class="back-agents"><span>Docker Containerisation</span><span>Azure AKS Cluster</span><span>GitHub Actions CI/CD</span><span>Helm Chart Deployments</span><span>Azure Key Vault</span><span>AWS S3 Archive</span></div>
+          <div class="back-section-label">Highlights</div>
+          <ul class="back-bullets"><li>Multi-stage Docker builds reducing image sizes by 60% with non-root security</li><li>Kubernetes HPA, pod disruption budgets and resource quotas on Azure AKS</li><li>GitHub Actions pipelines: test → Docker build → ACR push → Helm deploy on merge</li><li>Azure Key Vault integration — zero hardcoded secrets, rotation without redeploy</li><li>Deployment time reduced by 70% through full automation</li></ul>
+          <div class="back-stack"><i class="fas fa-layer-group"></i>&nbsp; <strong>Stack:</strong> Docker · Kubernetes · Azure AKS · Azure Container Registry · Azure Key Vault · AWS S3 · GitHub Actions · Helm · Terraform</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front grad-blue">
+          <div class="card-pattern"><svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><path d="M150 40 L240 100 L215 165 L240 225 L150 285 L60 225 L85 165 L60 100 Z" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.17)" stroke-width="2"/><circle cx="150" cy="162" r="38" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.2)" stroke-width="2"/></svg></div>
+          <div class="card-front-body">
+            <div class="card-icon-wrap"><i class="fas fa-building"></i></div>
+            <span class="card-tag">Enterprise</span>
+            <h3>Enterprise Systems</h3>
+            <p>ServiceNow, SAP & ITSM workflow automation at Kyndryl</p>
+            <div class="card-chips"><span>ServiceNow</span><span>SAP</span><span>ITIL</span><span>REST APIs</span></div>
+            <div class="card-flip-hint"><i class="fas fa-sync-alt"></i>&nbsp; Click card to flip</div>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <button class="flip-back-btn" aria-label="flip back">&#x2715;</button>
+          <h3>Enterprise Systems & ITSM Automation</h3>
+          <p class="back-overview">Managed and automated enterprise IT workflows within ServiceNow and SAP at Kyndryl — handling P1/P2 incident management at scale while building API integrations that feed real-time data into AI agent decision engines.</p>
+          <div class="back-section-label">Key Features</div>
+          <div class="back-agents"><span>P1/P2 Incident Mgmt</span><span>Ticket Auto-Classification</span><span>ServiceNow API Integration</span><span>Change Management</span><span>SAP Workflows</span><span>ITIL Compliance</span></div>
+          <div class="back-section-label">Highlights</div>
+          <ul class="back-bullets"><li>150+ P1/P2 incidents managed with 95%+ SLA compliance maintained</li><li>Mean Time to Acknowledge (MTTA) reduced by 40% through AI-assisted triage</li><li>ServiceNow REST API integrations feeding live ticket data to AI agents</li><li>Automated ticket classification reducing misroutes by 45%</li><li>Agile delivery across globally distributed team with consistent 2-week sprint velocity</li></ul>
+          <div class="back-stack"><i class="fas fa-layer-group"></i>&nbsp; <strong>Stack:</strong> ServiceNow · SAP · REST APIs · Python · Agile/Scrum · ITSM · ITIL · Change Management · Slack/Teams Integrations</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front grad-peach">
+          <div class="card-pattern"><svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="150" cy="150" r="105" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="2"/><circle cx="150" cy="150" r="68" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="2"/><circle cx="150" cy="150" r="32" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="2"/><circle cx="150" cy="150" r="9" fill="rgba(255,255,255,.28)"/></svg></div>
+          <div class="card-front-body">
+            <div class="card-icon-wrap"><i class="fas fa-sitemap"></i></div>
+            <span class="card-tag">Architecture</span>
+            <h3>System Architecture</h3>
+            <p>Scalable, observable microservices for AI-driven platforms</p>
+            <div class="card-chips"><span>Microservices</span><span>Event-Driven</span><span>Observability</span><span>HA Design</span></div>
+            <div class="card-flip-hint"><i class="fas fa-sync-alt"></i>&nbsp; Click card to flip</div>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <button class="flip-back-btn" aria-label="flip back">&#x2715;</button>
+          <h3>System Architecture & Design</h3>
+          <p class="back-overview">Designed scalable, observable, and fault-tolerant architectures for AI-driven operational platforms — applying microservices patterns, event-driven design, and observability-first principles to achieve high availability.</p>
+          <div class="back-section-label">Key Features</div>
+          <div class="back-agents"><span>Microservices Design</span><span>Event-Driven Arch.</span><span>CQRS Pattern</span><span>Circuit Breakers</span><span>Distributed Tracing</span><span>High Availability</span></div>
+          <div class="back-section-label">Highlights</div>
+          <ul class="back-bullets"><li>99.9%+ uptime target achieved via Kubernetes health checks and pod redundancy</li><li>Event-driven architecture with async message queues for agent communication</li><li>CQRS pattern separating read/write paths for optimised query performance</li><li>Circuit breakers preventing cascade failures across agent service mesh</li><li>Structured logging and distributed tracing enabling < 5min mean time to diagnose</li></ul>
+          <div class="back-stack"><i class="fas fa-layer-group"></i>&nbsp; <strong>Stack:</strong> System Design · Microservices · Event-Driven Architecture · CQRS · Docker · Kubernetes · Distributed Tracing · Observability</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var FLIP_TRANSITION = 'transform .75s cubic-bezier(.4,0,.2,1)';
+  var TILT_TRANSITION = 'transform .1s ease';
+
+  document.querySelectorAll('.flip-card').forEach(function(card) {
+    var inner = card.querySelector('.flip-card-inner');
+    var backBtn = card.querySelector('.flip-back-btn');
+    var flipped = false;
+
+    function doFlip() {
+      flipped = !flipped;
+      // Always control transform via inline style — avoids CSS specificity conflict with tilt
+      inner.style.transition = FLIP_TRANSITION;
+      inner.style.transform = flipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+    }
+
+    function doUnflip() {
+      flipped = false;
+      inner.style.transition = FLIP_TRANSITION;
+      inner.style.transform = 'rotateY(0deg)';
+    }
+
+    card.addEventListener('click', doFlip);
+
+    if (backBtn) {
+      backBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        doUnflip();
+      });
+    }
+
+    // 3D tilt — only when not flipped, and clears properly on leave
+    card.addEventListener('mousemove', function(e) {
+      if (flipped) return;
+      var r = card.getBoundingClientRect();
+      var rx = ((e.clientY - r.top)  / r.height - 0.5) * 12;
+      var ry = ((e.clientX - r.left) / r.width  - 0.5) * -12;
+      inner.style.transition = TILT_TRANSITION;
+      inner.style.transform = 'perspective(1000px) rotateX('+rx+'deg) rotateY('+ry+'deg)';
+    });
+
+    card.addEventListener('mouseleave', function() {
+      if (flipped) return;
+      inner.style.transition = FLIP_TRANSITION;
+      inner.style.transform = 'rotateY(0deg)';
+    });
+  });
+})();
+</script>
+{% endblock %}

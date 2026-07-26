@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <meta name="theme-color" content="#667eea"> <!-- Android toolbar colour -->
+  <meta name="description" content="Portfolio of Subramanya Sharma B.G. — AI Data Engineer specializing in Agentic AI, Elasticsearch, Python, and enterprise observability.">
+  <title>Home – Subramanya Sharma B.G.</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Your styles & scripts -->
+  <link rel="stylesheet" href="/static/css/spa.css" />
+  <script defer src="/static/js/spa.js"></script>
+</head>
+
+<body>
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="logo">AI & Data Engineer</div>
+    <ul class="nav-links">
+      <li><a href="/" data-link><i class="fa-solid fa-house"></i></a></li>
+      <li><a href="/about" data-link>About</a></li>
+      <li><a href="/experience" data-link>Experience</a></li>
+      <li><a href="/projects" data-link>Projects</a></li>
+      <li><a href="/skills" data-link>Skills</a></li>
+      <li><a href="/contact" data-link>Contact</a></li>
+      <li><a href="/certifications" data-link>Certifications</a></li>
+      <li><a href="/static/docs/Subramanya_Sharma_B_G_Resume.pdf" class="btn-download" target="_blank">View Resume <i
+        class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+  </nav>
+
+  <!-- ===== PAGE CONTENT ===== -->
+  <main id="spa-root">
+    
+<section class="hero">
+  <img src="/static/img/avatar.jpg" alt="avatar" />
+
+  <!--  TYPEWRITER TITLE  -->
+  <h1 class="typewriter">Hi, I'm Subramanya Sharma B.G.</h1>
+
+  <p class="tagline mt-1">AI Data Engineer · Agentic AI · Elasticsearch · Python · Kibana</p>
+  <p class="hero-text mt-1">I build intelligent observability systems and AI-powered workflows that transform operational data into faster, more reliable business outcomes.</p>
+  <div class="btn-row mt-3">
+    <a href="/experience" class="btn">Explore My Experience</a>
+    <a href="/projects" class="btn">View My Projects</a>
+  </div>
+
+  <div class="hero-features mt-3">
+    <div class="feature-card">
+      <h4>Agentic AI Workflows</h4>
+      <p>Built 6 autonomous agents for risk evaluation, SLA prediction and incident automation.</p>
+    </div>
+    <div class="feature-card">
+      <h4>Measurable Impact</h4>
+      <p>Reduced manual triage by ~60% and saved 200+ engineer-hours/month.</p>
+    </div>
+    <div class="feature-card">
+      <h4>Dashboards & ETL</h4>
+      <p>Real-time Elasticsearch & Kibana dashboards with automated ETL.</p>
+    </div>
+  </div>
+
+  <!--  SOCIAL / CERT  -->
+  <div class="socials mt-3">
+    <a href="https://github.com/subbusharma123/Subramanya-Sharma/" target="_blank" aria-label="GitHub"><i
+        class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/in/SubramanyaSharmaBG" target="_blank" aria-label="LinkedIn"><i
+        class="fab fa-linkedin"></i></a>
+    <a href="https://codechef.com/users/SubramanyaSharmaBG" target="_blank" aria-label="CodeChef"><i
+        class="fas fa-code"></i></a>
+    <!--  CREDLY  -->
+    <a href="https://www.credly.com/users/subramanya-sharma-b-g-1" target="_blank" aria-label="Credly-1"><i
+        class="fas fa-award"></i></a>
+    <a href="https://www.credly.com/users/subramanya-sharma-b-g" target="_blank" aria-label="Credly-2"><i
+        class="fas fa-certificate"></i></a>
+  </div>
+</section>
+
+<!--  TYPING + CURSOR  -->
+<style>
+  .typewriter {
+    display: inline-block;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    background: linear-gradient(to right, var(--gold), var(--fg));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    width: 0;
+    max-width: fit-content;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid var(--gold);
+
+    animation: typing 3.5s steps(30, end) forwards, blink 0.75s step-end infinite;
+  }
+
+  @keyframes typing {
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes blink {
+
+    from,
+    to {
+      border-color: transparent;
+    }
+
+    50% {
+      border-color: var(--gold);
+    }
+  }
+</style>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© <span id="year"></span> Subramanya Sharma B.G.</p>
+  </footer>
+</body>
+
+</html>
