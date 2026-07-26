@@ -1,27 +1,51 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Subramanya Sharma B.G.{% endblock %} — AI & Data Engineer</title>
+  <script>
+    // Apply the correct theme BEFORE any CSS paints, so there's no flash of the wrong theme.
+    // Preference is one of: 'light', 'dark', 'system'. Default is 'system'.
+    (function() {
+      var pref = localStorage.getItem('theme-preference') || 'system';
+      var actual = pref === 'system'
+        ? (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+        : pref;
+      document.documentElement.setAttribute('data-theme', actual);
+    })();
+  </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
   {% block extra_css %}{% endblock %}
 </head>
 <body>
 <canvas id="three-canvas"></canvas>
-
 <nav class="navbar">
   <div class="nav-container">
     <a href="/" class="logo"><span class="logo-cube">◈</span> Subramanya Sharma <b class="G">B.G.</b></a>
-    <div class="nav-links">
-      <a href="/portfolio"      class="{% if active=='portfolio'      %}nav-active{% endif %}">Portfolio</a>
-      <a href="/experience"     class="{% if active=='experience'     %}nav-active{% endif %}">Experience</a>
-      <a href="/skills"         class="{% if active=='skills'         %}nav-active{% endif %}">Skills</a>
-      <a href="/certifications" class="{% if active=='certifications' %}nav-active{% endif %}">Certifications</a>
-      <a href="/about"          class="{% if active=='about'          %}nav-active{% endif %}">About</a>
-      <a href="/resume-view" target="_blank" class="btn-resume-nav"><i class="fas fa-file-pdf"></i> Resume</a>
-      <button id="theme-btn" class="btn-theme" onclick="toggleTheme()" title="Toggle light/dark mode"><i class="fas fa-sun"></i></button>
+    <div class="nav-right">
+      <div class="nav-links" id="nav-links">
+        <a href="/portfolio"      class="{% if active=='portfolio'      %}nav-active{% endif %}">Portfolio</a>
+        <a href="/experience"     class="{% if active=='experience'     %}nav-active{% endif %}">Experience</a>
+        <a href="/skills"         class="{% if active=='skills'         %}nav-active{% endif %}">Skills</a>
+        <a href="/certifications" class="{% if active=='certifications' %}nav-active{% endif %}">Certifications</a>
+        <a href="/about"          class="{% if active=='about'          %}nav-active{% endif %}">About</a>
+        <a href="/resume-view" target="_blank" class="btn-resume-nav"><i class="fas fa-file-pdf"></i> Resume</a>
+      </div>
+      <div class="theme-switcher" id="theme-switcher">
+        <button id="theme-btn" class="btn-theme" onclick="toggleThemeMenu()" title="Theme settings" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-circle-half-stroke"></i>
+        </button>
+        <div class="theme-menu" id="theme-menu">
+          <button class="theme-option" data-mode="light" onclick="setTheme('light')"><i class="fas fa-sun"></i> Light</button>
+          <button class="theme-option" data-mode="dark" onclick="setTheme('dark')"><i class="fas fa-moon"></i> Dark</button>
+          <button class="theme-option" data-mode="system" onclick="setTheme('system')"><i class="fas fa-desktop"></i> System</button>
+        </div>
+      </div>
+      <button id="nav-toggle" class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation menu" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </div>
 </nav>

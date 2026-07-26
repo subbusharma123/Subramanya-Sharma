@@ -1,22 +1,96 @@
-
-// ── THEME TOGGLE ─────────────────────────────────────────────
-function initTheme() {
-  var saved = localStorage.getItem('theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', saved);
-  updateThemeIcon(saved);
+// ── THEME SWITCHER (Light / Dark / System) ───────────────────
+function getSystemTheme() {
+  return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
 }
-function toggleTheme() {
-  var cur = document.documentElement.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
-  updateThemeIcon(next);
-  if (window.__threeRenderer) window.__threeRenderer.setClearColor(next === 'light' ? 0xdde8f5 : 0x050510, 1);
+function getThemePreference() {
+  return localStorage.getItem('theme-preference') || 'system';
+}
+function applyTheme(actual) {
+  document.documentElement.setAttribute('data-theme', actual);
+  updateThemeIcon(actual);
+  if (window.__threeRenderer) window.__threeRenderer.setClearColor(actual === 'light' ? 0xdde8f5 : 0x050510, 1);
+}
+function setTheme(mode) {
+  localStorage.setItem('theme-preference', mode);
+  var actual = mode === 'system' ? getSystemTheme() : mode;
+  applyTheme(actual);
+  updateActiveThemeOption(mode);
+  closeThemeMenu();
+}
+function initTheme() {
+  // data-theme is already set by the inline script in <head> before paint;
+  // just sync the icon and menu highlight to match it.
+  var current = document.documentElement.getAttribute('data-theme') || 'dark';
+  updateThemeIcon(current);
+  updateActiveThemeOption(getThemePreference());
+
+  // If the user's OS theme changes while "System" is selected, follow it live
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      if (getThemePreference() === 'system') {
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  }
 }
 function updateThemeIcon(theme) {
   var btn = document.getElementById('theme-btn');
-  if (btn) btn.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+  if (btn) btn.innerHTML = theme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
 }
+function updateActiveThemeOption(mode) {
+  document.querySelectorAll('.theme-option').forEach(function(opt) {
+    opt.classList.toggle('active', opt.dataset.mode === mode);
+  });
+}
+function toggleThemeMenu() {
+  var menu = document.getElementById('theme-menu');
+  var btn = document.getElementById('theme-btn');
+  if (!menu || !btn) return;
+  var isOpen = menu.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+function closeThemeMenu() {
+  var menu = document.getElementById('theme-menu');
+  var btn = document.getElementById('theme-btn');
+  if (menu) menu.classList.remove('open');
+  if (btn) btn.setAttribute('aria-expanded', 'false');
+}
+document.addEventListener('click', function(e) {
+  var switcher = document.getElementById('theme-switcher');
+  if (switcher && !switcher.contains(e.target)) closeThemeMenu();
+});
+
+// ── MOBILE NAV TOGGLE ────────────────────────────────────────
+function toggleNav() {
+  var links = document.getElementById('nav-links');
+  var toggle = document.getElementById('nav-toggle');
+  if (!links || !toggle) return;
+  var isOpen = links.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  toggle.innerHTML = isOpen ? '<i class="fas fa-xmark"></i>' : '<i class="fas fa-bars"></i>';
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var links = document.getElementById('nav-links');
+  var toggle = document.getElementById('nav-toggle');
+  if (links && toggle) {
+    // Close menu after tapping a nav link
+    links.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+    // Close menu when tapping outside it
+    document.addEventListener('click', function(e) {
+      if (links.classList.contains('open') && !links.contains(e.target) && e.target !== toggle && !toggle.contains(e.target)) {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.innerHTML = '<i class="fas fa-bars"></i>';
+      }
+    });
+  }
+});
 document.addEventListener('DOMContentLoaded', function() {
   initTheme();
 
