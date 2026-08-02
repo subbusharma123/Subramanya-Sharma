@@ -125,11 +125,16 @@ document.addEventListener('DOMContentLoaded', function() {
       if (open && input) input.focus();
     }
 
+    // Always start closed; user opens explicitly from bubble.
+    setChatOpenState(false);
+
     bubble.addEventListener('click', function() {
       setChatOpenState(panel.hidden);
     });
 
-    closeBtn.addEventListener('click', function() {
+    closeBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
       setChatOpenState(false);
     });
 
