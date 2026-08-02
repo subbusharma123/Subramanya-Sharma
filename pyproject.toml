@@ -6,7 +6,7 @@ authors = [
     {name = "subbusharma123",email = "76877382+subbusharma123@users.noreply.github.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.11,<3.14"
 dependencies = [
 ]
 
