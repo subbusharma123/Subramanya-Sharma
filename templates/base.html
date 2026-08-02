@@ -66,7 +66,7 @@
 <section id="ai-chat-window" class="ai-chat-window" aria-label="Portfolio AI assistant" hidden>
   <div class="ai-chat-header">
     <span>AI Assistant</span>
-    <button id="ai-chat-close" class="ai-chat-close" aria-label="Close AI assistant">
+    <button id="ai-chat-close" class="ai-chat-close" type="button" aria-label="Close AI assistant">
       <i class="fas fa-xmark"></i>
     </button>
   </div>
@@ -80,7 +80,7 @@
 <section id="ai-chat-window" class="ai-chat-window" aria-label="Portfolio AI assistant" hidden>
   <div class="ai-chat-header">
     <span>AI Assistant</span>
-    <button id="ai-chat-close" class="ai-chat-close" aria-label="Close AI assistant">
+    <button id="ai-chat-close" class="ai-chat-close" type="button" aria-label="Close AI assistant">
       <i class="fas fa-xmark"></i>
     </button>
   </div>
@@ -100,28 +100,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
-{% if ai_chat_url %}
-<script>
-  (function() {
-    var bubble = document.getElementById('ai-chat-bubble');
-    var panel = document.getElementById('ai-chat-window');
-    var closeButton = document.getElementById('ai-chat-close');
-
-    function setChatOpenState(open) {
-      panel.hidden = !open;
-      bubble.setAttribute('aria-expanded', open ? 'true' : 'false');
-    }
-
-    bubble.addEventListener('click', function() {
-      setChatOpenState(panel.hidden);
-    });
-
-    closeButton.addEventListener('click', function() {
-      setChatOpenState(false);
-    });
-  })();
-</script>
-{% endif %}
 {% block page_js %}{% endblock %}
 </body>
 </html>

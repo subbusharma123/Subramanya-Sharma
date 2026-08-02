@@ -193,8 +193,6 @@ def resume_view():
 
 @app.route('/api/ai-chat', methods=['POST'])
 def ai_chat():
-    from langchain_core.messages import AIMessage, HumanMessage
-
     payload = request.get_json(silent=True) or {}
     user_input = str(payload.get('message', '')).strip()
     history = payload.get('history', [])
@@ -203,6 +201,8 @@ def ai_chat():
         return jsonify({"error": "message is required"}), 400
 
     try:
+        from langchain_core.messages import AIMessage, HumanMessage
+
         chat_history = []
         for item in history:
             role = str(item.get('role', '')).lower()
