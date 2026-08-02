@@ -159,20 +159,35 @@ document.addEventListener('DOMContentLoaded', function() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: message, history: history })
         });
-        var data = await response.json();
+
+        var data = null;
+        var rawBody = '';
+        var contentType = response.headers.get('content-type') || '';
+        if (contentType.indexOf('application/json') !== -1) {
+          data = await response.json();
+        } else {
+          rawBody = await response.text();
+        }
+
         if (typingEl) typingEl.remove();
 
         if (!response.ok) {
-          appendMessage('assistant', data.error || 'The assistant is temporarily unavailable.');
+          var backendError = (data && data.error) ? data.error : '';
+          var fallback = 'Assistant error (' + response.status + '). Please try again.';
+          if (!backendError && rawBody) {
+            var trimmed = rawBody.replace(/\s+/g, ' ').trim();
+            if (trimmed) fallback = 'Assistant error (' + response.status + '): ' + trimmed.slice(0, 180);
+          }
+          appendMessage('assistant', backendError || fallback);
           return;
         }
 
-        var reply = data.reply || 'I could not generate a response.';
+        var reply = (data && data.reply) ? data.reply : 'I could not generate a response.';
         appendMessage('assistant', reply);
         history.push({ role: 'assistant', content: reply });
       } catch (err) {
         if (typingEl) typingEl.remove();
-        appendMessage('assistant', 'Network error. Please try again.');
+        appendMessage('assistant', 'Request failed. Please try again.');
       } finally {
         sendBtn && (sendBtn.disabled = false);
         input && (input.disabled = false);
