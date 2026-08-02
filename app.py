@@ -13,6 +13,7 @@ app = Flask(__name__)
 SUPPORTED_EXTENSIONS = {".pdf", ".txt", ".docx", ".csv"}
 _agent_executor = None
 _agent_lock = threading.Lock()
+DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.0-flash").strip() or "gemini-2.0-flash"
 
 
 def _load_document(path: Path):
@@ -120,7 +121,7 @@ def _build_agent_executor():
             return "Web search failed at runtime. Try again in a moment."
 
     tools = [query_portfolio_knowledge_base, search_the_live_web]
-    llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", google_api_key=google_api_key, temperature=0.2)
+    llm = ChatGoogleGenerativeAI(model=DEFAULT_GEMINI_MODEL, google_api_key=google_api_key, temperature=0.2)
     prompt = ChatPromptTemplate.from_messages(
         [
             (
@@ -144,6 +145,81 @@ def _get_agent_executor():
             if _agent_executor is None:
                 _agent_executor = _build_agent_executor()
     return _agent_executor
+
+
+def _fallback_llm_reply(user_input: str):
+    from langchain_google_genai import ChatGoogleGenerativeAI
+
+    google_api_key = os.environ.get("GOOGLE_API_KEY", "").strip()
+    if not google_api_key:
+        return None
+
+    fallback_models = [DEFAULT_GEMINI_MODEL, "gemini-flash-latest", "gemini-1.5-flash"]
+    attempted = set()
+    last_exc = None
+
+    for model_name in fallback_models:
+        if model_name in attempted:
+            continue
+        attempted.add(model_name)
+        try:
+            llm = ChatGoogleGenerativeAI(
+                model=model_name,
+                google_api_key=google_api_key,
+                temperature=0.2,
+            )
+            response = llm.invoke(user_input)
+            content = getattr(response, "content", "")
+            if isinstance(content, list):
+                content = " ".join(str(part) for part in content if part)
+            text = str(content or "").strip()
+            if text:
+                return text
+        except Exception as exc:
+            last_exc = exc
+
+    if last_exc:
+        raise last_exc
+    return None
+
+
+def _is_quota_error(exc: Exception):
+    text = str(exc).lower()
+    return (
+        exc.__class__.__name__ == "ResourceExhausted"
+        or "quota exceeded" in text
+        or "resourceexhausted" in text
+        or "429" in text
+    )
+
+
+def _quota_error_message(exc: Exception):
+    text = str(exc)
+    retry_match = re.search(r"retry in\s+([0-9.]+)s", text, flags=re.IGNORECASE)
+    retry_hint = ""
+    if retry_match:
+        retry_hint = f" Please retry after about {retry_match.group(1)} seconds."
+    return (
+        "Gemini API quota exceeded for this project/key. "
+        "Please enable billing or use a key/project with available quota."
+        + retry_hint
+    )
+
+
+def _portfolio_only_reply(user_input: str):
+    retriever = _build_portfolio_retriever()
+    docs = _retrieve_portfolio_docs(retriever, user_input, k=3)
+    if not docs:
+        return None
+
+    lines = [
+        "I am currently in portfolio-only mode because live Gemini quota is exhausted.",
+        "Here are relevant details from Subramanya's local profile data:",
+    ]
+    for idx, doc in enumerate(docs, start=1):
+        snippet = " ".join((doc.page_content or "").split())
+        lines.append(f"{idx}. {snippet[:280]}")
+    return "\n\n".join(lines)
 
 
 @app.context_processor
@@ -222,8 +298,26 @@ def ai_chat():
         return jsonify({"error": str(exc)}), 503
     except Exception as exc:
         app.logger.exception("AI chat request failed")
+        if _is_quota_error(exc):
+            portfolio_reply = _portfolio_only_reply(user_input)
+            if portfolio_reply:
+                return jsonify({"reply": portfolio_reply})
+            return jsonify({"error": _quota_error_message(exc)}), 429
+
+        try:
+            fallback_reply = _fallback_llm_reply(user_input)
+            if fallback_reply:
+                return jsonify({"reply": fallback_reply})
+        except Exception as fallback_exc:
+            app.logger.exception("AI fallback request failed")
+            if _is_quota_error(fallback_exc):
+                portfolio_reply = _portfolio_only_reply(user_input)
+                if portfolio_reply:
+                    return jsonify({"reply": portfolio_reply})
+                return jsonify({"error": _quota_error_message(fallback_exc)}), 429
+
         body = {"error": "AI service failed unexpectedly. Please try again."}
-        if app.debug:
+        if app.debug or os.environ.get("AI_CHAT_SHOW_ERROR_DETAIL", "0") == "1":
             body["detail"] = str(exc)
         return jsonify(body), 500
 

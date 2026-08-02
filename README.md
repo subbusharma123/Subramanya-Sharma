@@ -120,3 +120,85 @@ Service B (AI Agent):
 - In native mode, everything runs on the same URL and chat calls /api/ai-chat.
 - If GOOGLE_CSE_ID is missing, the assistant still works for portfolio and general questions but web search tool replies with a setup hint.
 - In external mode, set AI_CHAT_URL and optionally disable native mode with USE_NATIVE_AI_CHAT=0.
+
+## AWS Deployment (Elastic Beanstalk)
+
+This project is now AWS-ready for a single-service Flask deployment.
+
+Included files:
+- Procfile
+- runtime.txt
+
+### Prerequisites
+
+1. AWS account with permissions for Elastic Beanstalk, EC2, S3, IAM, and CloudWatch.
+2. AWS CLI installed and configured.
+3. EB CLI installed.
+4. Git repository pushed to GitHub (optional but recommended).
+
+### One-Time Local Setup
+
+1. Configure AWS CLI:
+
+   aws configure
+
+2. Install EB CLI (if not installed):
+
+   pip install awsebcli
+
+### Initialize Elastic Beanstalk
+
+From repository root:
+
+1. Initialize app:
+
+   eb init
+
+   Recommended answers:
+   - Region: your nearest region
+   - Application name: SubramanyaPortfolio
+   - Platform: Python
+   - Platform version: Python 3.11
+   - SSH setup: optional (Yes if you want shell access)
+
+2. Create environment:
+
+   eb create subramanya-portfolio-prod
+
+3. Set environment variables:
+
+   eb setenv GOOGLE_API_KEY=your_gemini_key GOOGLE_CSE_ID=your_cse_id USE_NATIVE_AI_CHAT=1 GEMINI_MODEL=gemini-flash-latest
+
+4. Deploy:
+
+   eb deploy
+
+5. Open app:
+
+   eb open
+
+### Useful Operations
+
+- Check health and events:
+
+  eb status
+  eb events
+
+- Stream logs:
+
+  eb logs --all
+
+- Redeploy after code changes:
+
+  eb deploy
+
+### Troubleshooting on AWS
+
+1. If chat returns quota errors, your Gemini key/project has exhausted quota.
+2. If app boots but chat fails, check environment variables via:
+
+   eb printenv
+
+3. If deployment fails, inspect logs:
+
+   eb logs --all
