@@ -1,0 +1,6 @@
+project_name,category,tech_stack,duration,status,impact_metric,impact_value,description
+Agentic AI for AIOps,AI Agents,"LangGraph|LangChain|Python|LLMs",2024-present,Production,manual_effort_reduction,60%,Built 6 autonomous agents for risk assessment incident correlation and routing
+Agentic AI for AIOps,AI Agents,"LangGraph|LangChain|Python|LLMs",2024-present,Production,annual_cost_savings_usd,150000+,Delivered measurable operational savings through automation
+Kibana Observability Dashboards,Analytics,"Elasticsearch|Kibana|SQL|Python",2023-present,Production,reporting_time_saved_hours_per_week,15+,Automated executive and operational dashboards with live SLA and MTTR tracking
+Enterprise Data Pipelines,Data Engineering,"Python|SQL|ETL|Logstash",2023-present,Production,data_processing_time_reduction,40%,Improved ingestion and processing performance with validation and optimized ETL
+Incident Operations with ServiceNow,ITSM,"ServiceNow|Elasticsearch|Python",2023-present,Production,tickets_resolved,150+,Maintained incident support quality with SLA-focused ownership and automation

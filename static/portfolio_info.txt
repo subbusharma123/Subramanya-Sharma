@@ -1,0 +1,62 @@
+PROFILE
+Name: Subramanya Sharma B.G.
+Role: AI and Data Engineer
+Location: Bengaluru, India
+Email: subramanyasharma987@gmail.com
+Phone: +91-9901526720
+GitHub: https://github.com/subbusharma123
+LinkedIn: https://www.linkedin.com/in/subramanya-sharma-b-g/
+
+SUMMARY
+AI and Data Engineer with 2.5+ years of experience building production-grade agentic AI systems, observability platforms, and scalable data pipelines. Strong focus on LangGraph, LangChain, Elasticsearch, ETL automation, and enterprise incident operations.
+
+CURRENT ROLE
+Company: Kyndryl Solutions
+Title: Data Engineer and AI/ML Developer
+Duration: Sep 2023 to Present
+
+CORE IMPACT
+- Designed and deployed 6 autonomous AI agents for AIOps workflows.
+- Reduced manual intervention by around 60 percent.
+- Saved around 200+ engineer-hours per month.
+- Estimated annual operational savings above USD 150,000.
+- Improved data processing performance by around 40 percent.
+- Maintained SLA outcomes above 95 percent for key incident classes.
+
+AGENT SYSTEMS DELIVERED
+- Change Request Risk Assessment Agent
+- Business SLA Breach Prediction Agent
+- Event Correlation Bridge Agent
+- Incident Correlation with Historical Data Agent
+- Actionable Insights Agent
+- Incident Assignment Agent
+
+KEY SKILLS
+AI and LLM:
+- LangGraph, LangChain, Agentic AI, RAG, Prompt Engineering
+
+Programming:
+- Python, SQL, Java (basic), C++
+
+Data and Analytics:
+- Elasticsearch, Kibana, Logstash, ETL Pipelines, Data Modeling
+
+Cloud and DevOps:
+- Docker, Kubernetes, Azure, AWS, CI/CD
+
+Enterprise Platforms:
+- ServiceNow (SNOW), SAP, Git/GitHub, Agile/Scrum
+
+EDUCATION
+- MCA, Jain University, Bengaluru (2024 to 2026), CGPA 9.4/10.0
+- BCA, REVA University, Bengaluru (2020 to 2023), CGPA 8.2/10.0
+
+WORK STYLE
+- Strong production ownership and SLA accountability.
+- Comfortable with cross-team collaboration and stakeholder communication.
+- Focused on practical automation and measurable business outcomes.
+
+ASSISTANT INSTRUCTIONS
+- Prefer answers grounded in this portfolio context for profile-related questions.
+- For current affairs and latest events, use live web search.
+- If data is unavailable or uncertain, clearly say so.

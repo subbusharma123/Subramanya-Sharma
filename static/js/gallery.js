@@ -107,6 +107,87 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+
+  // Native same-origin AI chat widget (used when iframe URL is not configured)
+  var bubble = document.getElementById('ai-chat-bubble');
+  var panel = document.getElementById('ai-chat-window');
+  var closeBtn = document.getElementById('ai-chat-close');
+  var form = document.getElementById('ai-chat-form');
+  var input = document.getElementById('ai-chat-input');
+  var sendBtn = document.getElementById('ai-chat-send');
+  var messagesEl = document.getElementById('ai-chat-messages');
+  var history = [];
+
+  if (bubble && panel && closeBtn) {
+    function setChatOpenState(open) {
+      panel.hidden = !open;
+      bubble.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open && input) input.focus();
+    }
+
+    bubble.addEventListener('click', function() {
+      setChatOpenState(panel.hidden);
+    });
+
+    closeBtn.addEventListener('click', function() {
+      setChatOpenState(false);
+    });
+
+    function appendMessage(role, text) {
+      if (!messagesEl) return;
+      var msg = document.createElement('article');
+      msg.className = role === 'user' ? 'ai-msg ai-msg-user' : 'ai-msg ai-msg-assistant';
+      msg.textContent = text;
+      messagesEl.appendChild(msg);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+      return msg;
+    }
+
+    async function sendMessage(message) {
+      var typingEl = appendMessage('assistant', 'Thinking...');
+      sendBtn && (sendBtn.disabled = true);
+      input && (input.disabled = true);
+
+      try {
+        var response = await fetch('/api/ai-chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: message, history: history })
+        });
+        var data = await response.json();
+        if (typingEl) typingEl.remove();
+
+        if (!response.ok) {
+          appendMessage('assistant', data.error || 'The assistant is temporarily unavailable.');
+          return;
+        }
+
+        var reply = data.reply || 'I could not generate a response.';
+        appendMessage('assistant', reply);
+        history.push({ role: 'assistant', content: reply });
+      } catch (err) {
+        if (typingEl) typingEl.remove();
+        appendMessage('assistant', 'Network error. Please try again.');
+      } finally {
+        sendBtn && (sendBtn.disabled = false);
+        input && (input.disabled = false);
+        if (input) input.focus();
+      }
+    }
+
+    if (form && input) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var message = (input.value || '').trim();
+        if (!message) return;
+
+        appendMessage('user', message);
+        history.push({ role: 'user', content: message });
+        input.value = '';
+        sendMessage(message);
+      });
+    }
+  }
 });
 
 // ── THREE.JS BACKGROUND ──────────────────────────────────────
