@@ -1,94 +1,122 @@
-# Subramanya Sharma - Portfolio Website
+# Subramanya Sharma Portfolio + AI Agent
 
-Welcome to the repository for **Subramanya Sharma's Personal Portfolio**. This project showcases my professional experience, skills, projects, and certifications as a Data Engineer. It is a single-page application (SPA) built with **Flask**, **HTML5**, **CSS3**, and **Vanilla JavaScript**.
+This repository supports two deployment modes:
 
-## 🚀 Features
+1. Native single-URL mode (recommended): Flask portfolio + built-in AI API and widget
+2. Dual-service mode: Flask portfolio + external Streamlit AI service embedded via iframe
 
--   **SPA Architecture**: Seamless navigation without full page reloads using the History API and `fetch`.
--   **Interactive Skills Section**: Click on skills to reveal detailed usage descriptions in a modal.
--   **Responsive Design**: Optimized for desktops, tablets, and mobile devices.
--   **Dark/Light Mode**: User preference support with local storage persistence.
--   **Dynamic Content**: Resume viewing and downloadable resources.
+## Architecture
 
-## 🛠 Tech Stack
+User opens portfolio website (Flask)
+-> clicks floating AI chat button
+-> native widget calls /api/ai-chat
+-> agent routes requests to:
 
--   **Backend**: Python (Flask)
--   **Frontend**: HTML5, CSS3 (Custom Variables & Animations), JavaScript (ES6+)
--   **Styling**: Font Awesome, Google Fonts (Inter, Playfair Display)
--   **Deployment**: Ready for deployment on platforms like Vercel, Heroku, or Render.
+- Local portfolio retriever (TXT/PDF/DOCX/CSV under static)
+- Live web search tool (Google Programmable Search)
+- Gemini model for reasoning and response generation
 
-## 📂 Project Structure
+## Important Files
 
-```text
-Subramanya-Sharma/
-├── static/
-│   ├── css/
-│   │   └── spa.css       # Main stylesheet variables, animations, and responsive rules
-│   ├── js/
-│   │   └── spa.js        # SPA routing, modal logic, data for skills, and theme toggle
-│   ├── img/              # Images and assets
-│   │   ├── avatar.jpg
-│   │   └── certs/        # Certification images
-│   └── docs/             # Document files like Resume
-├── templates/            # HTML Templates
-│   ├── base.html         # Base layout with navbar and footer
-│   ├── index.html        # Landing page
-│   ├── about.html        # About Me section
-│   ├── experience.html   # Work experience timeline
-│   ├── projects.html     # Technical projects showcase
-│   ├── skills.html       # Interactive skills grid
-│   ├── certifications.html # Certificates gallery
-│   ├── contact.html      # Contact information
-│   └── resume.html       # Resume viewer
-├── app.py                # Flask application entry point
-├── requirements.txt      # Python dependencies
-└── README.md             # Project documentation
+- app.py: Flask app, AI API endpoint, and chat config injection
+- ai_agent_app.py: Optional external Streamlit AI agent (dual-service mode)
+- static/portfolio_info.txt: structured profile knowledge base
+- static/project_data.csv: structured project metrics
+- templates/base.html: floating chat widget markup
+- static/css/gallery.css: chat widget styling
+- render.yaml: Render Blueprint for both web services
+
+## Local Setup
+
+1. Create and activate a virtual environment.
+2. Install dependencies:
+
+```bash
+pip install -r requirements.txt
 ```
 
-## 🔧 Installation & Running
+3. Set environment variables.
 
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/subbusharma123/Subramanya-Sharma.git
-    cd Subramanya-Sharma
-    ```
+Windows PowerShell:
 
-2.  **Create a virtual environment** (optional but recommended):
-    ```bash
-    python -m venv venv
-    # Windows
-    venv\Scripts\activate
-    # macOS/Linux
-    source venv/bin/activate
-    ```
+```powershell
+$env:GOOGLE_API_KEY="your_gemini_api_key"
+$env:GOOGLE_CSE_ID="your_google_cse_id"
+$env:USE_NATIVE_AI_CHAT="1"
+```
 
-3.  **Install dependencies**:
-    ```bash
-    pip install -r requirements.txt
-    ```
+4. Run Flask portfolio:
 
-4.  **Run the application**:
-    ```bash
-    python app.py
-    ```
+```bash
+python app.py
+```
 
-5.  **View locally**:
-    Open your browser and navigate to `http://127.0.0.1:5000`.
+Portfolio URL (with native chat): http://127.0.0.1:5000
 
-## 🤝 Contributing
+Optional external mode:
 
-This is a personal portfolio, but suggestions and feedback are always welcome!
-1.  Fork the repository.
-2.  Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4.  Push to the branch (`git push origin feature/AmazingFeature`).
-5.  Open a Pull Request.
+```powershell
+$env:AI_CHAT_URL="http://localhost:8501"
+$env:USE_NATIVE_AI_CHAT="0"
+streamlit run ai_agent_app.py
+```
 
-## 📬 Contact
+## Render Hosting (Free Tier)
 
-**Subramanya Sharma B.G.**
--   **GitHub**: [subbusharma123](https://github.com/subbusharma123)
--   **LinkedIn**: [Subramanya Sharma](https://www.linkedin.com/in/subramanya-sharma-b-g-7a0a0a1a0/)
+For same URL hosting, deploy only the Flask service. The AI runs inside Flask at /api/ai-chat.
 
----
-*© 2026 Subramanya Sharma B.G. All Rights Reserved.*
+### Option 1: Single Service (same URL, lowest cost)
+
+Create one Render Web Service:
+
+- Build Command: pip install -r requirements.txt
+- Start Command: gunicorn app:app
+- Environment Variables:
+   - GOOGLE_API_KEY=your_gemini_api_key
+   - GOOGLE_CSE_ID=your_google_cse_id (optional but required for live web news)
+   - USE_NATIVE_AI_CHAT=1
+
+### Option 2: Blueprint Deploy (dual service)
+
+1. Push this repository to GitHub.
+2. In Render, click New + -> Blueprint.
+3. Select this repository.
+4. Render reads render.yaml and creates both services:
+   - subramanya-portfolio-web
+   - subramanya-portfolio-ai-agent
+5. After first deploy, open the AI service URL and copy it.
+6. In portfolio service environment variables, set:
+   - AI_CHAT_URL = https://<your-ai-service>.onrender.com
+7. In AI service environment variables, set:
+   - GOOGLE_API_KEY = your Gemini API key
+   - GOOGLE_CSE_ID = your Google Programmable Search Engine ID
+8. Redeploy portfolio service after setting AI_CHAT_URL.
+
+### Option 2: Manual Two-Service Setup
+
+Create two Render Web Services from the same repo:
+
+Service A (Portfolio):
+- Build Command: pip install -r requirements.txt
+- Start Command: gunicorn app:app
+- Env Var: AI_CHAT_URL=https://<agent-service-url>.onrender.com
+
+Service B (AI Agent):
+- Build Command: pip install -r requirements.txt
+- Start Command: streamlit run ai_agent_app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true
+- Env Vars:
+  - GOOGLE_API_KEY=...
+  - GOOGLE_CSE_ID=...
+
+## Google Programmable Search Setup
+
+1. Create a search engine at https://programmablesearchengine.google.com/
+2. Configure it to search the entire web.
+3. Copy the Search Engine ID to GOOGLE_CSE_ID.
+4. Ensure your API key can access Custom Search API.
+
+## Notes
+
+- In native mode, everything runs on the same URL and chat calls /api/ai-chat.
+- If GOOGLE_CSE_ID is missing, the assistant still works for portfolio and general questions but web search tool replies with a setup hint.
+- In external mode, set AI_CHAT_URL and optionally disable native mode with USE_NATIVE_AI_CHAT=0.
