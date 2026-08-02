@@ -1,9 +1,9 @@
 import os
+import re
 import tempfile
 from pathlib import Path
 from typing import Dict, List, Optional
 
-import numpy as np
 import streamlit as st
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain.tools import tool
@@ -13,7 +13,6 @@ from langchain_community.document_loaders import (
 	PyPDFLoader,
 	TextLoader,
 )
-from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.utilities import GoogleSearchAPIWrapper
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
@@ -61,31 +60,38 @@ def init_portfolio_retriever(static_dir: str):
 
 	splitter = RecursiveCharacterTextSplitter(chunk_size=700, chunk_overlap=120)
 	chunks = splitter.split_documents(docs)
-	embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-	vectors = embeddings.embed_documents([doc.page_content for doc in chunks])
-	matrix = np.array(vectors, dtype="float32")
-	norms = np.linalg.norm(matrix, axis=1, keepdims=True)
-	norms[norms == 0] = 1.0
-	matrix = matrix / norms
-	return {"docs": chunks, "embeddings": embeddings, "matrix": matrix}
+	tokenized = [tokenize(doc.page_content) for doc in chunks]
+	return {"docs": chunks, "tokens": tokenized}
 
 
 def retrieve_portfolio_docs(index, query: str, k: int = 4):
 	if not index:
 		return []
 
-	query_vector = np.array(index["embeddings"].embed_query(query), dtype="float32")
-	q_norm = np.linalg.norm(query_vector)
-	if q_norm == 0:
+	query_tokens = tokenize(query)
+	if not query_tokens:
 		return []
 
-	query_vector = query_vector / q_norm
-	scores = index["matrix"] @ query_vector
-	if scores.size == 0:
+	scored = []
+	for i, doc_tokens in enumerate(index["tokens"]):
+		if not doc_tokens:
+			continue
+		overlap = len(query_tokens & doc_tokens)
+		if overlap == 0:
+			continue
+		score = overlap / len(query_tokens)
+		scored.append((score, i))
+
+	if not scored:
 		return []
 
-	top_idx = np.argsort(scores)[-k:][::-1]
-	return [index["docs"][int(i)] for i in top_idx if scores[int(i)] > 0]
+	scored.sort(reverse=True)
+	top_idx = [i for _, i in scored[:k]]
+	return [index["docs"][i] for i in top_idx]
+
+
+def tokenize(text: str):
+	return set(re.findall(r"[a-z0-9]+", (text or "").lower()))
 
 
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "").strip()
