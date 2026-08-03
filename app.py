@@ -15,6 +15,38 @@ _agent_executor = None
 _agent_lock = threading.Lock()
 DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.0-flash").strip() or "gemini-2.0-flash"
 
+CURRENT_AFFAIRS_KEYWORDS = {
+    "weather",
+    "news",
+    "today",
+    "latest",
+    "current affairs",
+    "headlines",
+    "live",
+    "score",
+    "stock",
+    "price",
+    "election",
+    "breaking",
+}
+
+PORTFOLIO_QUERY_KEYWORDS = {
+    "subramanya",
+    "profile",
+    "resume",
+    "cv",
+    "experience",
+    "work",
+    "project",
+    "skills",
+    "education",
+    "certification",
+    "kyndryl",
+    "ai",
+    "data engineer",
+    "contact",
+}
+
 
 def _load_document(path: Path):
     from langchain_community.document_loaders import CSVLoader, Docx2txtLoader, PyPDFLoader, TextLoader
@@ -85,6 +117,84 @@ def _tokenize(text: str):
     return set(re.findall(r"[a-z0-9]+", (text or "").lower()))
 
 
+def _looks_like_current_affairs_query(user_input: str):
+    text = (user_input or "").lower()
+    return any(keyword in text for keyword in CURRENT_AFFAIRS_KEYWORDS)
+
+
+def _looks_like_portfolio_query(user_input: str):
+    text = (user_input or "").lower()
+    if any(keyword in text for keyword in PORTFOLIO_QUERY_KEYWORDS):
+        return True
+    # Default to portfolio mode unless the user explicitly asks for live/current data.
+    return not _looks_like_current_affairs_query(text)
+
+
+def _is_two_line_request(user_input: str):
+    text = (user_input or "").lower()
+    return "2 line" in text or "two line" in text
+
+
+def _portfolio_grounded_reply(user_input: str):
+    retriever = _build_portfolio_retriever()
+    docs = _retrieve_portfolio_docs(retriever, user_input, k=4)
+    if not docs:
+        return None
+
+    joined = "\n".join((doc.page_content or "") for doc in docs)
+    sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+|\n+", joined) if s.strip()]
+    if not sentences:
+        return None
+
+    text = (user_input or "").lower()
+    wants_two_lines = _is_two_line_request(user_input)
+    max_lines = 2 if wants_two_lines else 3
+
+    priority_terms = [
+        "experience",
+        "kyndryl",
+        "data engineer",
+        "ai/ml",
+        "langgraph",
+        "langchain",
+        "manual intervention",
+        "engineer-hours",
+        "sla",
+        "years",
+    ]
+
+    ranked = []
+    for sentence in sentences:
+        normalized = sentence.lower()
+        score = sum(1 for term in priority_terms if term in normalized)
+        if "experience" in text and score == 0:
+            continue
+        if len(sentence) < 35:
+            continue
+        ranked.append((score, sentence))
+
+    ranked.sort(key=lambda item: item[0], reverse=True)
+
+    selected = []
+    seen = set()
+    pool = [sentence for _, sentence in ranked] if ranked else sentences
+    for sentence in pool:
+        key = sentence.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        selected.append(sentence)
+        if len(selected) >= max_lines:
+            break
+
+    if not selected:
+        return None
+
+    if wants_two_lines:
+        return "\n".join(selected[:2])
+    return "\n\n".join(selected)
+
+
 def _build_agent_executor():
     from langchain.agents import AgentExecutor, create_tool_calling_agent
     from langchain.tools import tool
@@ -126,8 +236,17 @@ def _build_agent_executor():
         [
             (
                 "system",
-                "You are an assistant embedded in Subramanya Sharma's portfolio website. "
-                "Be concise, professional, and factual. Use tools for portfolio facts and current events.",
+                "You are the AI assistant for Subramanya Sharma's portfolio website. "
+                "Your top priority is factual accuracy and grounded responses. "
+                "Rule 1: For profile, experience, projects, skills, education, certifications, or contact questions, "
+                "you must use portfolio knowledge tool results and answer only from that evidence. "
+                "Rule 2: If portfolio evidence is missing or ambiguous, explicitly say the detail is not available in portfolio data. "
+                "Never guess, infer hidden facts, or create fictional biography content. "
+                "Rule 3: Use live web search only for current affairs or real-time topics such as weather, breaking news, "
+                "live scores, market prices, and election updates. "
+                "Rule 4: If live web search is unavailable, clearly say real-time data is unavailable right now. "
+                "Rule 5: Follow user formatting constraints exactly when requested (for example: two lines, bullets, short summary). "
+                "Style: concise, professional, and directly relevant to the question.",
             ),
             MessagesPlaceholder(variable_name="chat_history"),
             ("human", "{input}"),
@@ -275,6 +394,14 @@ def ai_chat():
     if not user_input:
         return jsonify({"error": "message is required"}), 400
 
+    is_current_affairs = _looks_like_current_affairs_query(user_input)
+    is_portfolio_query = _looks_like_portfolio_query(user_input)
+
+    if is_portfolio_query and not is_current_affairs:
+        grounded_reply = _portfolio_grounded_reply(user_input)
+        if grounded_reply:
+            return jsonify({"reply": grounded_reply})
+
     try:
         from langchain_core.messages import AIMessage, HumanMessage
 
@@ -303,6 +430,13 @@ def ai_chat():
             if portfolio_reply:
                 return jsonify({"reply": portfolio_reply})
             return jsonify({"error": _quota_error_message(exc)}), 429
+
+        # Do not use ungrounded fallback LLM for portfolio questions.
+        if is_portfolio_query and not is_current_affairs:
+            grounded_reply = _portfolio_grounded_reply(user_input)
+            if grounded_reply:
+                return jsonify({"reply": grounded_reply})
+            return jsonify({"error": "Could not find grounded portfolio details for that question."}), 500
 
         try:
             fallback_reply = _fallback_llm_reply(user_input)
