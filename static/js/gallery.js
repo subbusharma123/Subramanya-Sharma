@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function sendMessage(message) {
-      var typingEl = appendMessage('assistant', 'Thinking...');
+      var typingEl = appendMessage('assistant', 'Astra is thinking...');
       sendBtn && (sendBtn.disabled = true);
       input && (input.disabled = true);
 
@@ -173,10 +173,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!response.ok) {
           var backendError = (data && data.error) ? data.error : '';
-          var fallback = 'Assistant error (' + response.status + '). Please try again.';
+          var fallback = 'Astra error (' + response.status + '). Please try again.';
           if (!backendError && rawBody) {
             var trimmed = rawBody.replace(/\s+/g, ' ').trim();
-            if (trimmed) fallback = 'Assistant error (' + response.status + '): ' + trimmed.slice(0, 180);
+            if (trimmed) fallback = 'Astra error (' + response.status + '): ' + trimmed.slice(0, 180);
           }
           appendMessage('assistant', backendError || fallback);
           return;
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
         history.push({ role: 'assistant', content: reply });
       } catch (err) {
         if (typingEl) typingEl.remove();
-        appendMessage('assistant', 'Request failed. Please try again.');
+        appendMessage('assistant', 'Astra request failed. Please try again.');
       } finally {
         sendBtn && (sendBtn.disabled = false);
         input && (input.disabled = false);
