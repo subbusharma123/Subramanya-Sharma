@@ -124,10 +124,7 @@ def _looks_like_current_affairs_query(user_input: str):
 
 def _looks_like_portfolio_query(user_input: str):
     text = (user_input or "").lower()
-    if any(keyword in text for keyword in PORTFOLIO_QUERY_KEYWORDS):
-        return True
-    # Default to portfolio mode unless the user explicitly asks for live/current data.
-    return not _looks_like_current_affairs_query(text)
+    return any(keyword in text for keyword in PORTFOLIO_QUERY_KEYWORDS)
 
 
 def _is_two_line_request(user_input: str):
@@ -135,11 +132,106 @@ def _is_two_line_request(user_input: str):
     return "2 line" in text or "two line" in text
 
 
+def _is_summary_query(user_input: str):
+    text = (user_input or "").lower()
+    asks_background = "background" in text
+    asks_projects = "project" in text or "projects" in text
+    asks_skills = "skill" in text or "skills" in text
+    asks_summary = "summary" in text or "summar" in text
+    asks_quality = "how good" in text
+    return asks_summary or asks_quality or (asks_background and asks_projects and asks_skills)
+
+
+def _clean_line(text: str):
+    line = re.sub(r"\s+", " ", (text or "")).strip()
+    line = re.sub(r"^[\-\*\u2022\d\)\.\s]+", "", line).strip()
+    if len(line) < 28:
+        return ""
+    letters = [ch for ch in line if ch.isalpha()]
+    if letters:
+        uppercase_ratio = sum(1 for ch in letters if ch.isupper()) / len(letters)
+        if uppercase_ratio > 0.75:
+            return ""
+    return line
+
+
+def _extract_candidate_lines(docs):
+    lines = []
+    seen = set()
+    for doc in docs:
+        for raw in re.split(r"\n+", doc.page_content or ""):
+            line = _clean_line(raw)
+            if not line:
+                continue
+            key = line.lower()
+            if key in seen:
+                continue
+            seen.add(key)
+            lines.append(line)
+    return lines
+
+
+def _pick_best_line(lines, terms):
+    best_line = ""
+    best_score = -1
+    for line in lines:
+        normalized = line.lower()
+        score = sum(1 for term in terms if term in normalized)
+        if score > best_score:
+            best_score = score
+            best_line = line
+    return best_line if best_score > 0 else ""
+
+
+def _structured_summary_reply(user_input: str, docs):
+    lines = _extract_candidate_lines(docs)
+    if not lines:
+        return None
+
+    background = _pick_best_line(
+        lines,
+        ["years", "experience", "data engineer", "ai/ml", "kyndryl", "developer"],
+    )
+    projects = _pick_best_line(
+        lines,
+        ["agent", "agents", "project", "projects", "langgraph", "langchain", "aiops"],
+    )
+    skills = _pick_best_line(
+        lines,
+        ["skills", "python", "sql", "elasticsearch", "kubernetes", "aws", "azure", "rag"],
+    )
+    impact = _pick_best_line(
+        lines,
+        ["reduced", "saved", "manual", "hours", "sla", "improved", "percent", "%"],
+    )
+
+    chosen = [line for line in [background, projects, skills, impact] if line]
+    if not chosen:
+        return None
+
+    # Keep summary answers compact and consistent for chat UI readability.
+    compact = []
+    for line in chosen:
+        text = re.sub(r"\s+", " ", line).strip()
+        if text and text not in compact:
+            compact.append(text)
+
+    wants_two_lines = _is_two_line_request(user_input)
+    if wants_two_lines:
+        return "\n".join(compact[:2])
+    return "\n".join(compact[:3])
+
+
 def _portfolio_grounded_reply(user_input: str):
     retriever = _build_portfolio_retriever()
     docs = _retrieve_portfolio_docs(retriever, user_input, k=4)
     if not docs:
         return None
+
+    if _is_summary_query(user_input):
+        structured = _structured_summary_reply(user_input, docs)
+        if structured:
+            return structured
 
     joined = "\n".join((doc.page_content or "") for doc in docs)
     sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+|\n+", joined) if s.strip()]
@@ -236,16 +328,17 @@ def _build_agent_executor():
         [
             (
                 "system",
-                "You are the AI assistant for Subramanya Sharma's portfolio website. "
+                "You are Astra, the AI assistant for Subramanya Sharma's portfolio website. "
                 "Your top priority is factual accuracy and grounded responses. "
                 "Rule 1: For profile, experience, projects, skills, education, certifications, or contact questions, "
                 "you must use portfolio knowledge tool results and answer only from that evidence. "
                 "Rule 2: If portfolio evidence is missing or ambiguous, explicitly say the detail is not available in portfolio data. "
                 "Never guess, infer hidden facts, or create fictional biography content. "
-                "Rule 3: Use live web search only for current affairs or real-time topics such as weather, breaking news, "
+                "Rule 3: For general knowledge questions not about the portfolio and not real-time, answer directly and clearly. "
+                "Rule 4: Use live web search for current affairs or real-time topics such as weather, breaking news, "
                 "live scores, market prices, and election updates. "
-                "Rule 4: If live web search is unavailable, clearly say real-time data is unavailable right now. "
-                "Rule 5: Follow user formatting constraints exactly when requested (for example: two lines, bullets, short summary). "
+                "Rule 5: If live web search is unavailable, clearly say real-time data is unavailable right now. "
+                "Rule 6: Follow user formatting constraints exactly when requested (for example: two lines, bullets, short summary). "
                 "Style: concise, professional, and directly relevant to the question.",
             ),
             MessagesPlaceholder(variable_name="chat_history"),

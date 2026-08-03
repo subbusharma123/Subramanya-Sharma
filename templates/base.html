@@ -59,38 +59,38 @@
 </footer>
 
 {% if ai_chat_url %}
-<button id="ai-chat-bubble" class="ai-chat-bubble" aria-label="Open AI assistant" aria-expanded="false">
+<button id="ai-chat-bubble" class="ai-chat-bubble" aria-label="Open Astra" aria-expanded="false">
   <i class="fas fa-comments"></i>
 </button>
 
-<section id="ai-chat-window" class="ai-chat-window" aria-label="Portfolio AI assistant" hidden>
+<section id="ai-chat-window" class="ai-chat-window" aria-label="Astra assistant" hidden>
   <div class="ai-chat-header">
-    <span>AI Assistant</span>
-    <button id="ai-chat-close" class="ai-chat-close" type="button" aria-label="Close AI assistant">
+    <span>Astra</span>
+    <button id="ai-chat-close" class="ai-chat-close" type="button" aria-label="Close Astra">
       <i class="fas fa-xmark"></i>
     </button>
   </div>
-  <iframe src="{{ ai_chat_url }}" title="Portfolio AI assistant" loading="lazy"></iframe>
+  <iframe src="{{ ai_chat_url }}" title="Astra assistant" loading="lazy"></iframe>
 </section>
 {% elif use_native_ai_chat %}
-<button id="ai-chat-bubble" class="ai-chat-bubble" aria-label="Open AI assistant" aria-expanded="false">
+<button id="ai-chat-bubble" class="ai-chat-bubble" aria-label="Open Astra" aria-expanded="false">
   <i class="fas fa-comments"></i>
 </button>
 
-<section id="ai-chat-window" class="ai-chat-window" aria-label="Portfolio AI assistant" hidden>
+<section id="ai-chat-window" class="ai-chat-window" aria-label="Astra assistant" hidden>
   <div class="ai-chat-header">
-    <span>AI Assistant</span>
-    <button id="ai-chat-close" class="ai-chat-close" type="button" aria-label="Close AI assistant">
+    <span>Astra</span>
+    <button id="ai-chat-close" class="ai-chat-close" type="button" aria-label="Close Astra">
       <i class="fas fa-xmark"></i>
     </button>
   </div>
   <div id="ai-chat-messages" class="ai-chat-messages">
     <article class="ai-msg ai-msg-assistant">
-      Hi, I can answer questions about Subramanya's experience, projects, and current events.
+      Hi, I am Astra. Ask me anything about Subramanya's portfolio, or any general question.
     </article>
   </div>
   <form id="ai-chat-form" class="ai-chat-form" autocomplete="off">
-    <input id="ai-chat-input" type="text" maxlength="1200" placeholder="Ask me anything..." aria-label="Message AI assistant" required>
+    <input id="ai-chat-input" type="text" maxlength="1200" placeholder="Ask Astra anything..." aria-label="Message Astra" required>
     <button id="ai-chat-send" type="submit" aria-label="Send message">
       <i class="fas fa-paper-plane"></i>
     </button>
